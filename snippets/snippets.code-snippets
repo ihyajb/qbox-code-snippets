@@ -17,9 +17,14 @@
          
         "body": [  
     
-          "QBCore.Functions.GetPlayerData(function(PlayerData)",
-          " ",
-          "end)",
+        "QBCore.Functions.GetPlayerData = function(cb)",
+        "    if cb ~= nil then",
+        "        cb(QBCore.PlayerData)",
+        "    else",
+        "        return QBCore.PlayerData",
+        "    end",
+        "end",
+        
         ],
         "description": "Perhaps the most used function in the framework. This functions returns the players data of the current source which, since its used client side, is automatically the client or player. It can be used with modifiers on the end starting with a '.' (period)."
       },
