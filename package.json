@@ -1,5 +1,10 @@
 {
     "name": "qbcore-code-snippets",
+    "publisher": "ihyajb",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ihyajb/qbcore-code-snippets.git"
+    },
     "displayName": "QBCore Code Snippets",
     "description": "Code Snippets for the QBCore FiveM Framework",
     "icon": "images/logo.png",
