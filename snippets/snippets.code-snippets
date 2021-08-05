@@ -1,0 +1,184 @@
+{    
+    " QBCore.Functions.Notify" : { 
+       
+      "prefix": "QBCore.Functions.Notify", 
+       
+      "body": [  
+  
+        "QBCore.Functions.Notify(text, textype, length) -- [text] = message, [type] = primary | error | success, [length] = time till fadeout.",
+      ],
+      "description": "Here, input simple description. It will show up as you start type the prefix on VS Code editing window"
+    },
+
+
+    " QBCore.Functions.GetPlayerData" : { 
+       
+        "prefix": "QBCore.Functions.GetPlayerData", 
+         
+        "body": [  
+    
+          "QBCore.Functions.GetPlayerData(function(PlayerData)",
+          " ",
+           "end)",
+        ],
+        "description": "Here, input simple description. It will show up as you start type the prefix on VS Code editing window"
+      },
+
+
+      " QBCore.Functions.CreateUseableItem" : { 
+       
+        "prefix": "QBCore.Functions.CreateUseableItem", 
+         
+        "body": [  
+    
+          "QBCore.Functions.CreateUseableItem(item , function(item)",
+          " ",
+          "end)",
+        ],
+        "description": "Here, input simple description. It will show up as you start type the prefix on VS Code editing window"
+      },
+
+
+      " QBCore.Functions.DrawText" : { 
+       
+        "prefix": "QBCore.Functions.DrawText", 
+         
+        "body": [  
+    
+          "QBCore.Functions.DrawText = function(x, y, width, height, scale, r, g, b, a, text)",
+          "    SetTextFont(4)",
+          "    SetTextProportional(0)",
+          "    SetTextScale(scale, scale)",
+          "    SetTextColour(r, g, b, a)",
+          "    SetTextDropShadow(0, 0, 0, 0,255)",
+          "    SetTextEdge(2, 0, 0, 0, 255)",
+          "    SetTextDropShadow()",
+          "    SetTextOutline()",
+          "    SetTextEntry('STRING')",
+          "    AddTextComponentString(text)",
+          "    DrawText(x - width/2, y - height/2 + 0.005)",
+          "end",
+        ],
+        "description": "Not used as commonly as 3D text, you can draw text on the screen with this function which makes it more convenient than having to make a new function locally."
+      },
+      
+
+      " QBCore.Functions.DrawText3D" : { 
+       
+        "prefix": "QBCore.Functions.DrawText3D", 
+         
+        "body": [  
+    
+          "QBCore.Functions.DrawText3D = function(x, y, z, text)",
+          "    SetTextScale(0.35, 0.35)",
+          "    SetTextFont(4)",
+          "    SetTextProportional(1)",
+          "    SetTextColour(255, 255, 255, 215)",
+          "    SetTextEntry('STRING')",
+          "    SetTextCentre(true)",
+          "    AddTextComponentString(text)",
+          "    SetDrawOrigin(x,y,z, 0)",
+          "    DrawText(0.0, 0.0)",
+          "    local factor = (string.len(text)) / 370",
+          "    DrawRect(0.0, 0.0+0.0125, 0.017+ factor, 0.03, 0, 0, 0, 75)",
+          "    ClearDrawOrigin()",
+          "end",
+        ],
+        "description": "Another very common function you will see throughout the framework. This allows you to draw floating 3D text on the screen."
+      },
+
+
+      " QBCore.Functions.GetPlayers" : { 
+       
+        "prefix": "QBCore.Functions.GetPlayers", 
+         
+        "body": [  
+    
+        "QBCore.Functions.GetPlayers = function()",
+        "    local players = {}",
+        "    for _, player in ipairs(GetActivePlayers()) do",
+        "        local ped = GetPlayerPed(player)",
+        "        if DoesEntityExist(ped) then",
+        "            table.insert(players, player)",
+        "        end",
+        "    end",
+        "    return players",
+        "end",
+        
+        ],
+        "description": "This function returns a table of all the players currently in the server but is not onesync-infinity compatible when used on the client side. You can use # to return the number or json.encode(table) to return the JSON."
+      },
+
+
+      " QBCore.Functions.Progressbar" : { 
+       
+        "prefix": "QBCore.Functions.Progressbar", 
+         
+        "body": [  
+    
+        "QBCore.Functions.Progressbar = function(name, label, duration, useWhileDead, canCancel, disableControls, animation, prop, propTwo, onFinish, onCancel)",
+        "    exports['progressbar']:Progress({",
+        "        name = name:lower(),",
+        "        duration = duration,",
+        "        label = label,",
+        "        useWhileDead = useWhileDead,",
+        "        canCancel = canCancel,",
+        "        controlDisables = disableControls,",
+        "        animation = animation,",
+        "        prop = prop,",
+        "        propTwo = propTwo,",
+        "    }, function(cancelled)",
+        "        if not cancelled then",
+        "            if onFinish ~= nil then",
+        "                onFinish()",
+        "            end",
+        "        else",
+        "            if onCancel ~= nil then",
+        "                onCancel()",
+        "            end",
+        "        end",
+        "    end)",
+        "end",
+        
+        
+        ],
+        "description": "Allows you to call this function instead of using an export for the progress bar."
+      },
+
+      " QBCore.Functions.SpawnVehicle" : { 
+       
+        "prefix": "QBCore.Functions.SpawnVehicle", 
+         
+        "body": [  
+    
+        "QBCore.Functions.SpawnVehicle = function(model, cb, coords, isnetworked)",
+        "    local model = (type(model)=='number' and model or GetHashKey(model))",
+        "    local coords = coords ~= nil and coords or QBCore.Functions.GetCoords(PlayerPedId())",
+        "    local isnetworked = isnetworked ~= nil and isnetworked or true",
+        " ",
+        "    RequestModel(model)",
+        "    while not HasModelLoaded(model) do",
+        "        Citizen.Wait(10)",
+        "    end",
+        " ",
+        "    local veh = CreateVehicle(model, coords.x, coords.y, coords.z, coords.a, isnetworked, false) -- SetEntityAsMissionEntity boolean",
+        "    local netid = NetworkGetNetworkIdFromEntity(veh)",
+        " ",
+        "    SetVehicleHasBeenOwnedByPlayer(vehicle,  true)",
+        "    SetNetworkIdCanMigrate(netid, true)",
+        "    SetVehicleNeedsToBeHotwired(veh, false)",
+        "    SetVehRadioStation(veh, false)",
+        " ",
+        "    SetModelAsNoLongerNeeded(model)",
+        " ",
+        "    if cb ~= nil then",
+        "        cb(veh)",
+        "    end",
+        "end",
+        
+        
+        
+        ],
+        "description": "Allows you to call this function instead of using an export for the progress bar."
+      },
+}
