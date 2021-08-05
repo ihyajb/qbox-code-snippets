@@ -7,7 +7,7 @@
   
         "QBCore.Functions.Notify(text, textype, length) -- [text] = message, [type] = primary | error | success, [length] = time till fadeout.",
       ],
-      "description": "PLACEHOLDER"
+      "description": "Allows you to use the built in notification system which means no dependency on another."
     },
 
 
@@ -21,7 +21,7 @@
           " ",
           "end)",
         ],
-        "description": "PLACEHOLDER"
+        "description": "Perhaps the most used function in the framework. This functions returns the players data of the current source which, since its used client side, is automatically the client or player. It can be used with modifiers on the end starting with a '.' (period)."
       },
 
 
@@ -35,7 +35,7 @@
           " ",
           "end , 'item Name')",
         ],
-        "description": "PLACEHOLDER"
+        "description": "Returns whether or not a player has a certain item."
       },
 
 
@@ -49,7 +49,7 @@
           " ",
           "end)",
         ],
-        "description": "PLACEHOLDER"
+        "description": "Makes an item useable."
       },
 
 
@@ -191,7 +191,7 @@
         "end",
         
         ],
-        "description": "PLACEHOLDER"
+        "description": "Spawns a specific vehicle model."
       },
 
 
@@ -224,7 +224,7 @@
         "end",
         
         ],
-        "description": "PLACEHOLDER"
+        "description": "Returns the closest vehicle to the player at the time."
       },
 
 
