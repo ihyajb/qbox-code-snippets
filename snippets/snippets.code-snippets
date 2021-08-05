@@ -1,5 +1,5 @@
 {    
-    " QBCore.Functions.Notify" : { 
+    " Notify" : { 
        
       "prefix": "QBCore.Functions.Notify", 
        
@@ -7,11 +7,11 @@
   
         "QBCore.Functions.Notify(text, textype, length) -- [text] = message, [type] = primary | error | success, [length] = time till fadeout.",
       ],
-      "description": "Here, input simple description. It will show up as you start type the prefix on VS Code editing window"
+      "description": "PLACEHOLDER"
     },
 
 
-    " QBCore.Functions.GetPlayerData" : { 
+    " GetPlayerData" : { 
        
         "prefix": "QBCore.Functions.GetPlayerData", 
          
@@ -19,13 +19,27 @@
     
           "QBCore.Functions.GetPlayerData(function(PlayerData)",
           " ",
-           "end)",
+          "end)",
         ],
-        "description": "Here, input simple description. It will show up as you start type the prefix on VS Code editing window"
+        "description": "PLACEHOLDER"
       },
 
 
-      " QBCore.Functions.CreateUseableItem" : { 
+      " HasItem" : { 
+       
+        "prefix": "QBCore.Functions.HasItem", 
+         
+        "body": [  
+    
+          "QBCore.Functions.HasItem(source , function(HasItem)",
+          " ",
+          "end , 'item Name')",
+        ],
+        "description": "PLACEHOLDER"
+      },
+
+
+      " CreateUseableItem" : { 
        
         "prefix": "QBCore.Functions.CreateUseableItem", 
          
@@ -35,11 +49,11 @@
           " ",
           "end)",
         ],
-        "description": "Here, input simple description. It will show up as you start type the prefix on VS Code editing window"
+        "description": "PLACEHOLDER"
       },
 
 
-      " QBCore.Functions.DrawText" : { 
+      " DrawText" : { 
        
         "prefix": "QBCore.Functions.DrawText", 
          
@@ -63,7 +77,7 @@
       },
       
 
-      " QBCore.Functions.DrawText3D" : { 
+      " DrawText3D" : { 
        
         "prefix": "QBCore.Functions.DrawText3D", 
          
@@ -88,7 +102,7 @@
       },
 
 
-      " QBCore.Functions.GetPlayers" : { 
+      " GetPlayers" : { 
        
         "prefix": "QBCore.Functions.GetPlayers", 
          
@@ -110,7 +124,7 @@
       },
 
 
-      " QBCore.Functions.Progressbar" : { 
+      " Progressbar" : { 
        
         "prefix": "QBCore.Functions.Progressbar", 
          
@@ -145,7 +159,7 @@
         "description": "Allows you to call this function instead of using an export for the progress bar."
       },
 
-      " QBCore.Functions.SpawnVehicle" : { 
+      " SpawnVehicle" : { 
        
         "prefix": "QBCore.Functions.SpawnVehicle", 
          
@@ -176,9 +190,367 @@
         "    end",
         "end",
         
+        ],
+        "description": "PLACEHOLDER"
+      },
+
+
+      " GetClosestVehicle" : { 
+       
+        "prefix": "QBCore.Functions.GetClosestVehicle", 
+         
+        "body": [  
+    
+        "QBCore.Functions.GetClosestVehicle = function(coords)",
+        "    local vehicles        = QBCore.Functions.GetVehicles()",
+        "    local closestDistance = -1",
+        "    local closestVehicle  = -1",
+        "    local coords          = coords",
+        " ",
+        "    if coords == nil then",
+        "        local playerPed = PlayerPedId()",
+        "        coords = GetEntityCoords(playerPed)",
+        "    end",
+        "    for i=1, #vehicles, 1 do",
+        "        local vehicleCoords = GetEntityCoords(vehicles[i])",
+        "        local distance = #(vehicleCoords - coords)",
+        " ",
+        "        if closestDistance == -1 or closestDistance > distance then",
+        "            closestVehicle  = vehicles[i]",
+        "            closestDistance = distance",
+        "        end",
+        "    end",
+        "    return closestVehicle",
+        "end",
+        
+        ],
+        "description": "PLACEHOLDER"
+      },
+
+
+      " SetVehicleProperties" : { 
+       
+        "prefix": "QBCore.Functions.SetVehicleProperties", 
+         
+        "body": [  
+    
+        "QBCore.Functions.SetVehicleProperties = function(vehicle, props)",
+        "    SetVehicleModKit(vehicle, 0)",
+        " ",
+        "    if props.plate ~= nil then",
+        "        SetVehicleNumberPlateText(vehicle, props.plate)",
+        "    end",
+        " ",
+        "    if props.plateIndex ~= nil then",
+        "        SetVehicleNumberPlateTextIndex(vehicle, props.plateIndex)",
+        "    end",
+        " ",
+        "    if props.health ~= nil then",
+        "        SetEntityHealth(vehicle, props.health)",
+        "    end",
+        " ",
+        "    if props.dirtLevel ~= nil then",
+        "        SetVehicleDirtLevel(vehicle, props.dirtLevel)",
+        "    end",
+        " ",
+        "    if props.color1 ~= nil then",
+        "        local color1, color2 = GetVehicleColours(vehicle)",
+        "        SetVehicleColours(vehicle, props.color1, color2)",
+        "    end ",
+        " ",
+        "    if props.color2 ~= nil then",
+        "        local color1, color2 = GetVehicleColours(vehicle)",
+        "        SetVehicleColours(vehicle, color1, props.color2)",
+        "    end",
+        " ",
+        "    if props.pearlescentColor ~= nil then",
+        "        local pearlescentColor, wheelColor = GetVehicleExtraColours(vehicle)",
+        "        SetVehicleExtraColours(vehicle, props.pearlescentColor, wheelColor)",
+        "    end",
+        " ",
+        "    if props.wheelColor ~= nil then",
+        "        local pearlescentColor, wheelColor = GetVehicleExtraColours(vehicle)",
+        "        SetVehicleExtraColours(vehicle, pearlescentColor, props.wheelColor)",
+        "    end",
+        " ",
+        "    if props.wheels ~= nil then",
+        "        SetVehicleWheelType(vehicle, props.wheels)",
+        "    end",
+        " ",
+        "    if props.windowTint ~= nil then",
+        "        SetVehicleWindowTint(vehicle, props.windowTint)",
+        "    end",
+        " ",
+        "    if props.neonEnabled ~= nil then",
+        "        SetVehicleNeonLightEnabled(vehicle, 0, props.neonEnabled[1])",
+        "        SetVehicleNeonLightEnabled(vehicle, 1, props.neonEnabled[2])",
+        "        SetVehicleNeonLightEnabled(vehicle, 2, props.neonEnabled[3])",
+        "        SetVehicleNeonLightEnabled(vehicle, 3, props.neonEnabled[4])",
+        "    end",
+        " ",
+        "    if props.neonColor ~= nil then",
+        "        SetVehicleNeonLightsColour(vehicle, props.neonColor[1], props.neonColor[2], props.neonColor[3])",
+        "    end",
+        " ",
+        "    if props.modSmokeEnabled ~= nil then",
+        "        ToggleVehicleMod(vehicle, 20, true)",
+        "    end",
+        " ",
+        "    if props.tyreSmokeColor ~= nil then",
+        "        SetVehicleTyreSmokeColor(vehicle, props.tyreSmokeColor[1], props.tyreSmokeColor[2], props.tyreSmokeColor[3])",
+        "    end",
+        " ",
+        "    if props.modSpoilers ~= nil then",
+        "        SetVehicleMod(vehicle, 0, props.modSpoilers, false)",
+        "    end",
+        " ",
+        "    if props.modFrontBumper ~= nil then",
+        "        SetVehicleMod(vehicle, 1, props.modFrontBumper, false)",
+        "    end",
+        " ",
+        "    if props.modRearBumper ~= nil then",
+        "        SetVehicleMod(vehicle, 2, props.modRearBumper, false)",
+        "    end",
+        " ",
+        "    if props.modSideSkirt ~= nil then",
+        "        SetVehicleMod(vehicle, 3, props.modSideSkirt, false)",
+        "    end",
+        " ",
+        "    if props.modExhaust ~= nil then",
+        "        SetVehicleMod(vehicle, 4, props.modExhaust, false)",
+        "    end",
+        " ",
+        "    if props.modFrame ~= nil then",
+        "        SetVehicleMod(vehicle, 5, props.modFrame, false)",
+        "    end",
+        " ",
+        "    if props.modGrille ~= nil then",
+        "        SetVehicleMod(vehicle, 6, props.modGrille, false)",
+        "    end",
+        " ",
+        "    if props.modHood ~= nil then",
+        "        SetVehicleMod(vehicle, 7, props.modHood, false)",
+        "    end",
+        " ",
+        "    if props.modFender ~= nil then",
+        "        SetVehicleMod(vehicle, 8, props.modFender, false)",
+        "    end",
+        " ",
+        "    if props.modRightFender ~= nil then ",
+        "        SetVehicleMod(vehicle, 9, props.modRightFender, false)",
+        "    end",
+        " ",
+        "    if props.modRoof ~= nil then",
+        "        SetVehicleMod(vehicle, 10, props.modRoof, false)",
+        "    end",
+        " ",
+        "    if props.modEngine ~= nil then",
+        "        SetVehicleMod(vehicle, 11, props.modEngine, false)",
+        "    end",
+        " ", 
+        "    if props.modBrakes ~= nil then",
+        "        SetVehicleMod(vehicle, 12, props.modBrakes, false)",
+        "    end",
+        " ",
+        "    if props.modTransmission ~= nil then",
+        "        SetVehicleMod(vehicle, 13, props.modTransmission, false)",
+        "    end",
+        " ",
+        "    if props.modHorns ~= nil then",
+        "        SetVehicleMod(vehicle, 14, props.modHorns, false)",
+        "    end",
+        " ",
+        "    if props.modSuspension ~= nil then",
+        "        SetVehicleMod(vehicle, 15, props.modSuspension, false)",
+        "    end",
+        " ",
+        "    if props.modArmor ~= nil then",
+        "        SetVehicleMod(vehicle, 16, props.modArmor, false)",
+        "    end",
+        " ",
+        "    if props.modTurbo ~= nil then",
+        "        ToggleVehicleMod(vehicle,  18, props.modTurbo)",
+        "    end",
+        " ",
+        "    if props.modXenon ~= nil then",
+        "        ToggleVehicleMod(vehicle,  22, props.modXenon)",
+        "    end",
+        " ",
+        "    if props.modFrontWheels ~= nil then",
+        "        SetVehicleMod(vehicle, 23, props.modFrontWheels, false)",
+        "    end",
+        " ",
+        "    if props.modBackWheels ~= nil then",
+        "        SetVehicleMod(vehicle, 24, props.modBackWheels, false)",
+        "    end",
+        " ",
+        "    if props.modPlateHolder ~= nil then",
+        "        SetVehicleMod(vehicle, 25, props.modPlateHolder, false)",
+        "    end",
+        " ",
+        "    if props.modVanityPlate ~= nil then",
+        "        SetVehicleMod(vehicle, 26, props.modVanityPlate, false)",
+        "    end",
+        " ",
+        "    if props.modTrimA ~= nil then",
+        "        SetVehicleMod(vehicle, 27, props.modTrimA, false)",
+        "    end",
+        " ",
+        "    if props.modOrnaments ~= nil then",
+        "        SetVehicleMod(vehicle, 28, props.modOrnaments, false)",
+        "    end",
+        " ",
+        "    if props.modDashboard ~= nil then",
+        "        SetVehicleMod(vehicle, 29, props.modDashboard, false)",
+        "    end",
+        " ",
+        "    if props.modDial ~= nil then",
+        "        SetVehicleMod(vehicle, 30, props.modDial, false)",
+        "    end",
+        " ",
+        "    if props.modDoorSpeaker ~= nil then",
+        "        SetVehicleMod(vehicle, 31, props.modDoorSpeaker, false)",
+        "    end",
+        " ",
+        "    if props.modSeats ~= nil then",
+        "        SetVehicleMod(vehicle, 32, props.modSeats, false)",
+        "    end",
+        " ",
+        "    if props.modSteeringWheel ~= nil then",
+        "        SetVehicleMod(vehicle, 33, props.modSteeringWheel, false)",
+        "    end",
+        " ",
+        "    if props.modShifterLeavers ~= nil then",
+        "        SetVehicleMod(vehicle, 34, props.modShifterLeavers, false)",
+        "    end",
+        " ",
+        "    if props.modAPlate ~= nil then",
+        "        SetVehicleMod(vehicle, 35, props.modAPlate, false)",
+        "    end",
+        " ",
+        "    if props.modSpeakers ~= nil then",
+        "        SetVehicleMod(vehicle, 36, props.modSpeakers, false)",
+        "    end",
+        " ",
+        "    if props.modTrunk ~= nil then",
+        "        SetVehicleMod(vehicle, 37, props.modTrunk, false)",
+        "    end",
+        " ",
+        "    if props.modHydrolic ~= nil then",
+        "        SetVehicleMod(vehicle, 38, props.modHydrolic, false)",
+        "    end",
+        " ",
+        "    if props.modEngineBlock ~= nil then",
+        "        SetVehicleMod(vehicle, 39, props.modEngineBlock, false)",
+        "    end",
+        " ",
+        "    if props.modAirFilter ~= nil then",
+        "        SetVehicleMod(vehicle, 40, props.modAirFilter, false)",
+        "    end",
+        " ",
+        "    if props.modStruts ~= nil then",
+        "        SetVehicleMod(vehicle, 41, props.modStruts, false)",
+        "    end",
+        " ",
+        "    if props.modArchCover ~= nil then",
+        "        SetVehicleMod(vehicle, 42, props.modArchCover, false)",
+        "    end",
+        " ",
+        "    if props.modAerials ~= nil then",
+        "        SetVehicleMod(vehicle, 43, props.modAerials, false)",
+        "    end",
+        " ",
+        "    if props.modTrimB ~= nil then",
+        "        SetVehicleMod(vehicle, 44, props.modTrimB, false)",
+        "    end",
+        " ",
+        "    if props.modTank ~= nil then",
+        "        SetVehicleMod(vehicle, 45, props.modTank, false)",
+        "    end",
+        " ",
+        "    if props.modWindows ~= nil then",
+        "        SetVehicleMod(vehicle, 46, props.modWindows, false)",
+        "    end",
+        " ",
+        "    if props.modLivery ~= nil then",
+        "        SetVehicleMod(vehicle, 48, props.modLivery, false)",
+        "        SetVehicleLivery(vehicle, props.modLivery)",
+        "    end",
+        "    if props.modCustomTyres ~= nil and props.modCustomTyres then ",
+        "        SetVehicleMod(vehicle, 23, props.modCustomTyres, true)",
+        "    end",
+        "end",
         
         
         ],
-        "description": "Allows you to call this function instead of using an export for the progress bar."
+        "description": "Applies properties to a specific vehicle."
+      },
+
+
+      " TriggerCallback" : { 
+       
+        "prefix": "QBCore.Functions.TriggerCallback", 
+         
+        "body": [  
+    
+        "QBCore.Functions.TriggerCallback = function(name, cb, ...)",
+        "    QBCore.ServerCallbacks[name] = cb",
+        "    TriggerServerEvent('QBCore:Server:TriggerCallback', name, ...)",
+        "end",
+        
+        
+        ],
+        "description": "Allows you to retrieve information by calling to the server and getting something in return."
+      },
+
+
+      " DeleteVehicle" : { 
+       
+        "prefix": "QBCore.Functions.DeleteVehicle", 
+         
+        "body": [  
+    
+        "QBCore.Functions.DeleteVehicle = function(vehicle)",
+        "    SetEntityAsMissionEntity(vehicle, true, true)",
+        "    DeleteVehicle(vehicle)",
+        "end",
+        
+        ],
+        "description": "Deletes vehicle entity."
+      },
+
+
+      " ExecuteSql" : { 
+       
+        "prefix": "QBCore.Functions.ExecuteSql", 
+         
+        "body": [  
+    
+        "QBCore.Functions.ExecuteSql = function(wait, query, cb)",
+        "    local rtndata = {}",
+        "    local waiting = true",
+        "    exports['ghmattimysql']:execute(query, {}, function(data)",
+        "        if cb ~= nil and wait == false then",
+        "            cb(data)",
+        "        end",
+        "        rtndata = data",
+        "        waiting = false",
+        "    end)",
+        "    if wait then",
+        "        while waiting do",
+        "            Citizen.Wait(5)",
+        "        end",
+        "        if cb ~= nil and wait == true then",
+        "            cb(rtndata)",
+        "        end",
+        "    end",
+        "    return rtndata",
+        "end",
+        
+        
+        
+        
+        ],
+        "description": "Executes data into the db."
       },
 }

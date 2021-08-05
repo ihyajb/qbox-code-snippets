@@ -2,6 +2,8 @@
 
 All credit goes to the [QBCore Documentation](http://www.qbcore.org/#/./client/functions/functions?id=client-sided-functions-and-usage) and Bombay#9032
 
+Extension created by ihyajb#7177
+
 ## Features
 
 QBCore FiveM Framework Code Snippets for the making, editing and understanding scripts
