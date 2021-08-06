@@ -602,4 +602,88 @@
         ],
         "description": "Pastes an Example Manifest for you to edit."
       },
+
+
+      " Kick" : { 
+       
+        "prefix": "QBCore.Functions.Kick", 
+         
+        "body": [  
+    
+      "QBCore.Functions.Kick = function(source, reason, setKickReason, deferrals)",
+      "    local src = source",
+      "    reason = '\n'..reason..'\n🔸 Check our Discord for further information: '..QBCore.Config.Server.discord",
+      "    if(setKickReason ~=nil) then",
+      "        setKickReason(reason)",
+      "    end",
+      "    Citizen.CreateThread(function()",
+      "        if(deferrals ~= nil)then",
+      "            deferrals.update(reason)",
+      "            Citizen.Wait(2500)",
+      "        end",
+      "        if src ~= nil then",
+      "            DropPlayer(src, reason)",
+      "        end",
+      "        local i = 0",
+      "        while (i <= 4) do",
+      "            i = i + 1",
+      "            while true do",
+      "                if src ~= nil then",
+      "                    if(GetPlayerPing(src) >= 0) then",
+      "                        break",
+      "                    end",
+      "                    Citizen.Wait(100)",
+      "                    Citizen.CreateThread(function() ",
+      "                        DropPlayer(src, reason)",
+      "                    end)",
+      "                end",
+      "            end",
+      "            Citizen.Wait(5000)",
+      "        end",
+      "    end)",
+      "end",
+        
+
+        ],
+        "description": "Kicks an specified source from the server with a reason."
+      },
+
+
+      " GetPlayerByCitizenId" : { 
+       
+        "prefix": "QBCore.Functions.GetPlayerByCitizenId", 
+         
+        "body": [  
+    
+      "QBCore.Functions.GetPlayerByCitizenId = function(citizenid)",
+      "    for src, player in pairs(QBCore.Players) do",
+      "        local cid = citizenid",
+      "        if QBCore.Players[src].PlayerData.citizenid == cid then",
+      "            return QBCore.Players[src]",
+      "        end",
+      "    end",
+      "    return nil",
+      "end",
+
+        ],
+        "description": "A specified player's source."
+      },
+
+
+      " LoadAnimDict" : { 
+       
+        "prefix": "LoadAnimDict", 
+         
+        "body": [  
+    
+      "function LoadAnimDict(dict)",
+      "    while (not HasAnimDictLoaded(dict)) do",
+      "        RequestAnimDict(dict)",
+      "        Citizen.Wait(5)",
+      "    end",
+      "end",
+
+        ],
+        "description": "Loads an Animation before its called"
+      },
 }
