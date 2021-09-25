@@ -20,7 +20,7 @@ Description of the code and what it does
 3. On the left side of Visual Studio Code select `Extensions`
 4. Click "Search Extensions in Marketplace"
 5. Type `QBCore`
-6. Click Install
+6. Click Install on `QBCore Code Snippets`
 7. Reload Visual Studio Code
 
 ## Known Issues
@@ -28,6 +28,20 @@ Description of the code and what it does
 Some Documentation may currently be outdated (Will be fixed as soon as the new docs come out)
 
 ## Release Notes
+
+### 0.0.5
+
+- Started to add oxmysql stuff
+- The cursor location is now in the correct spot for fast typing
+- Added QBCore.Commands.Add 
+- Added RegisterNetEvent
+- Added RegisterServerEvent
+- Added CreateThread
+- Removed Old QBCore.Functions.ExecuteSql
+
+### 0.0.4
+
+- Nothing of intrest
 
 ### 0.0.3
 
@@ -42,10 +56,6 @@ Some Documentation may currently be outdated (Will be fixed as soon as the new d
 - Added Fxmanifest Snippet
 - Updated Descriptions
 - Updated GetPlayerData Snippet
-
-### 0.0.1
-
-- Initial release
 
 
 ---------

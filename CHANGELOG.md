@@ -2,6 +2,20 @@
 
 All notable changes to the "qbcore-code-snippets" extension will be documented in this file.
 
+## [0.0.5]
+
+- Started to add oxmysql stuff
+- The cursor location is now in the correct spot for fast typing
+- Added QBCore.Commands.Add 
+- Added RegisterNetEvent
+- Added RegisterServerEvent
+- Added CreateThread
+- Removed Old QBCore.Functions.ExecuteSql
+
+## [0.0.5]
+
+- Nothing of intrest
+
 ## [0.0.3]
 
 - Added Kick Snippet

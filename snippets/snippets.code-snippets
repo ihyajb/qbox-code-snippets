@@ -29,6 +29,32 @@
         "description": "Perhaps the most used function in the framework. This functions returns the players data of the current source which, since its used client side, is automatically the client or player. It can be used with modifiers on the end starting with a '.' (period)."
       },
 
+    " oxmysql:execute" : { 
+      
+      "prefix": "exports.oxmysql:execute", 
+        
+      "body": [  
+  
+      " exports.oxmysql:execute('') { ",
+      " ",
+      "})",
+      ],
+      "description": "Uses the new oxmysql to execute"
+    },
+
+    "  oxmysql:insert" : { 
+      
+      "prefix": " exports.oxmysql:insert", 
+        
+      "body": [  
+  
+      "  exports.oxmysql:insert('') { ",
+      "    ",
+      "})",
+      ],
+      "description": "Uses the new oxmysql to insert"
+    },
+
 
       " HasItem" : { 
        
@@ -37,10 +63,24 @@
         "body": [  
     
           "QBCore.Functions.HasItem(source , function(HasItem)",
-          " ",
+          "    $0",
           "end , 'item Name')",
         ],
         "description": "Returns whether or not a player has a certain item."
+      },
+
+
+      " Add Commands" : { 
+       
+        "prefix": "QBCore.Commands.Add", 
+         
+        "body": [  
+    
+          "+QBCore.Commands.Add('commandnamehere', 'help text here', {}, false, function(source, args)",
+          "    $0",
+          "end)",
+        ],
+        "description": "Add a command using QBCore.Commands.Add"
       },
 
 
@@ -51,7 +91,7 @@
         "body": [  
     
           "QBCore.Functions.CreateUseableItem(item , function(item)",
-          " ",
+          "    $0",
           "end)",
         ],
         "description": "Makes an item useable."
@@ -80,7 +120,50 @@
         ],
         "description": "Not used as commonly as 3D text, you can draw text on the screen with this function which makes it more convenient than having to make a new function locally."
       },
+
+      " CreateThread" : { 
+       
+        "prefix": "CreateThread", 
+         
+        "body": [  
+    
+          "CreateThread(function()",
+          "   while true do",
+          "   Wait(1)",
+          "    $0",
+          "end)",
+        ],
+        "description": "placeholder"
+      },
       
+      " RegisterNetEvent" : { 
+       
+        "prefix": "RegisterNetEvent", 
+         
+        "body": [  
+    
+          "RegisterNetEvent('EventNameHere')",
+          "AddEventHandler('EventNameHere', function(data)",
+          "    $0",
+          "end)",
+        ],
+        "description": "placeholder"
+      },
+
+      " RegisterServerEvent" : { 
+       
+        "prefix": "RegisterServerEvent", 
+         
+        "body": [  
+    
+          "RegisterServerEvent('EventNameHere')",
+          "AddEventHandler('EventNameHere', function(data)",
+          "    $0",
+          "end)",
+        ],
+        "description": "placeholder"
+      },
+
 
       " DrawText3D" : { 
        
@@ -522,41 +605,6 @@
         
         ],
         "description": "Deletes vehicle entity."
-      },
-
-
-      " ExecuteSql" : { 
-       
-        "prefix": "QBCore.Functions.ExecuteSql", 
-         
-        "body": [  
-    
-        "QBCore.Functions.ExecuteSql = function(wait, query, cb)",
-        "    local rtndata = {}",
-        "    local waiting = true",
-        "    exports['ghmattimysql']:execute(query, {}, function(data)",
-        "        if cb ~= nil and wait == false then",
-        "            cb(data)",
-        "        end",
-        "        rtndata = data",
-        "        waiting = false",
-        "    end)",
-        "    if wait then",
-        "        while waiting do",
-        "            Citizen.Wait(5)",
-        "        end",
-        "        if cb ~= nil and wait == true then",
-        "            cb(rtndata)",
-        "        end",
-        "    end",
-        "    return rtndata",
-        "end",
-        
-        
-        
-        
-        ],
-        "description": "Executes data into the db."
       },
 
 
