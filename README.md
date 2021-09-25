@@ -25,7 +25,7 @@ Description of the code and what it does
 
 ## Known Issues
 
-Some Documentation may currently be outdated
+Some Documentation may currently be outdated (Will be fixed as soon as the new docs come out)
 
 ## Release Notes
 

@@ -6,9 +6,10 @@
         "url": "https://github.com/ihyajb/qbcore-code-snippets.git"
     },
     "displayName": "QBCore Code Snippets",
-    "description": "Code Snippets for the QBCore FiveM Framework",
+    "description": "VSCode Snippets for the QBCore FiveM Framework",
     "icon": "images/logo.png",
-    "version": "0.0.3",
+    "qna": "marketplace",
+    "version": "0.0.4",
     "engines": {
         "vscode": "^1.58.0"
     },
