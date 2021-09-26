@@ -29,6 +29,16 @@ Some Documentation may currently be outdated (Will be fixed as soon as the new d
 
 ## Release Notes
 
+### 0.0.6
+
+- Code Clean up
+- Added new GetCoreObject() snippet
+- Added new isLoggedIn snippet
+- Fixed DrawText and DrawText3D
+- Added onResourceStart and onResourceStop
+- New Progressbar code
+- and more...
+
 ### 0.0.5
 
 - Started to add oxmysql stuff

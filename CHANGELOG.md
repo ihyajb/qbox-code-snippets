@@ -2,6 +2,16 @@
 
 All notable changes to the "qbcore-code-snippets" extension will be documented in this file.
 
+## [0.0.6]
+
+- Code Clean up
+- Added new GetCoreObject() snippet
+- Added new isLoggedIn snippet
+- Fixed DrawText and DrawText3D
+- Added onResourceStart and onResourceStop
+- New Progressbar code
+- and more...
+
 ## [0.0.5]
 
 - Started to add oxmysql stuff
@@ -12,7 +22,7 @@ All notable changes to the "qbcore-code-snippets" extension will be documented i
 - Added CreateThread
 - Removed Old QBCore.Functions.ExecuteSql
 
-## [0.0.5]
+## [0.0.4]
 
 - Nothing of intrest
 

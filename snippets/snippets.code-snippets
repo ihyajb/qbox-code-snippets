@@ -1,5 +1,5 @@
 {    
-    " Notify" : { 
+    "Notify" : { 
        
       "prefix": "QBCore.Functions.Notify", 
        
@@ -11,7 +11,7 @@
     },
 
 
-    " GetPlayerData" : { 
+    "GetPlayerData" : { 
        
         "prefix": "QBCore.Functions.GetPlayerData", 
          
@@ -29,26 +29,26 @@
         "description": "Perhaps the most used function in the framework. This functions returns the players data of the current source which, since its used client side, is automatically the client or player. It can be used with modifiers on the end starting with a '.' (period)."
       },
 
-    " oxmysql:execute" : { 
+    "oxmysql:execute" : { 
       
       "prefix": "exports.oxmysql:execute", 
         
       "body": [  
   
-      " exports.oxmysql:execute('') { ",
+      "exports.oxmysql:execute('') { ",
       " ",
       "})",
       ],
       "description": "Uses the new oxmysql to execute"
     },
 
-    "  oxmysql:insert" : { 
+    "oxmysql:insert" : { 
       
-      "prefix": " exports.oxmysql:insert", 
+      "prefix": "exports.oxmysql:insert", 
         
       "body": [  
   
-      "  exports.oxmysql:insert('') { ",
+      "exports.oxmysql:insert('') { ",
       "    ",
       "})",
       ],
@@ -56,7 +56,29 @@
     },
 
 
-      " HasItem" : { 
+      "GetCoreObject()" : { 
+       
+        "prefix": "exports['qb-core']:GetCoreObject()", 
+         
+        "body": [  
+    
+          "exports['qb-core']:GetCoreObject()",
+        ],
+        "description": "QBCore new export method"
+      },
+
+      "isLoggedIn" : { 
+       
+        "prefix": "LocalPlayer.state['isLoggedIn']", 
+         
+        "body": [  
+    
+          "LocalPlayer.state['isLoggedIn']",
+        ],
+        "description": "QBCore new isLoggedIn method"
+      },
+
+      "HasItem" : { 
        
         "prefix": "QBCore.Functions.HasItem", 
          
@@ -70,13 +92,13 @@
       },
 
 
-      " Add Commands" : { 
+      "Add Commands" : { 
        
         "prefix": "QBCore.Commands.Add", 
          
         "body": [  
     
-          "+QBCore.Commands.Add('commandnamehere', 'help text here', {}, false, function(source, args)",
+          "QBCore.Commands.Add('commandnamehere', 'help text here', {}, false, function(source, args)",
           "    $0",
           "end)",
         ],
@@ -84,7 +106,7 @@
       },
 
 
-      " CreateUseableItem" : { 
+      "CreateUseableItem" : { 
        
         "prefix": "QBCore.Functions.CreateUseableItem", 
          
@@ -98,13 +120,13 @@
       },
 
 
-      " DrawText" : { 
+      "DrawText" : { 
        
         "prefix": "QBCore.Functions.DrawText", 
          
         "body": [  
     
-          "QBCore.Functions.DrawText = function(x, y, width, height, scale, r, g, b, a, text)",
+          "function DrawText(x, y, width, height, scale, r, g, b, a, text)",
           "    SetTextFont(4)",
           "    SetTextProportional(0)",
           "    SetTextScale(scale, scale)",
@@ -121,7 +143,7 @@
         "description": "Not used as commonly as 3D text, you can draw text on the screen with this function which makes it more convenient than having to make a new function locally."
       },
 
-      " CreateThread" : { 
+      "CreateThread" : { 
        
         "prefix": "CreateThread", 
          
@@ -135,8 +157,41 @@
         ],
         "description": "placeholder"
       },
+
+      "onResourceStart" : { 
+       
+        "prefix": "onResourceStart", 
+         
+        "body": [  
+    
+          "AddEventHandler('onResourceStart', function(resource)",
+          "   if resource == GetCurrentResourceName() then",
+          "      Wait(100)",
+          "      --Do Stuff here$0",
+          "   end",
+          "end)",
+
+        ],
+        "description": "This code runs as soon as a resource starts."
+      },
+
+      "onResourceStop" : { 
+       
+        "prefix": "onResourceStop", 
+         
+        "body": [  
+    
+          "AddEventHandler('onResourceStop', function(resource)",
+          "   if resource == GetCurrentResourceName() then",
+          "      --Do Stuff here$0",
+          "   end",
+          "end)",
+
+        ],
+        "description": "This code runs as soon as a resource is stopped."
+      },
       
-      " RegisterNetEvent" : { 
+      "RegisterNetEvent" : { 
        
         "prefix": "RegisterNetEvent", 
          
@@ -150,7 +205,7 @@
         "description": "placeholder"
       },
 
-      " RegisterServerEvent" : { 
+      "RegisterServerEvent" : { 
        
         "prefix": "RegisterServerEvent", 
          
@@ -165,13 +220,13 @@
       },
 
 
-      " DrawText3D" : { 
+      "DrawText3D" : { 
        
         "prefix": "QBCore.Functions.DrawText3D", 
          
         "body": [  
     
-          "QBCore.Functions.DrawText3D = function(x, y, z, text)",
+          "function DrawText3D(x, y, z, text)",
           "    SetTextScale(0.35, 0.35)",
           "    SetTextFont(4)",
           "    SetTextProportional(1)",
@@ -185,12 +240,13 @@
           "    DrawRect(0.0, 0.0+0.0125, 0.017+ factor, 0.03, 0, 0, 0, 75)",
           "    ClearDrawOrigin()",
           "end",
+
         ],
         "description": "Another very common function you will see throughout the framework. This allows you to draw floating 3D text on the screen."
       },
 
 
-      " GetPlayers" : { 
+      "GetPlayers" : { 
        
         "prefix": "QBCore.Functions.GetPlayers", 
          
@@ -211,43 +267,72 @@
         "description": "This function returns a table of all the players currently in the server but is not onesync-infinity compatible when used on the client side. You can use # to return the number or json.encode(table) to return the JSON."
       },
 
+      "PlayerData " : { 
+       
+        "prefix": "PlayerData ", 
+         
+        "body": [  
+    
+        "local PlayerData = {}",
+        "",
+        "-- Sets the playerdata when spawned",
+        "RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()",
+        "    PlayerData = QBCore.Functions.GetPlayerData()",
+        "end)",
+        "",
+        "-- Sets the playerdata to an empty table when the player has quit or did /logout",
+        "RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()",
+        "    PlayerData = {}",
+        "end)",
+        "",
+        "-- When the players job gets updated this will trigger and update the playerdata",
+        "RegisterNetEvent('QBCore:Client:OnJobUpdate', function(JobInfo)",
+        "    PlayerData.job = JobInfo",
+        "end)",
+        "",
+        "-- When the players gang gets updated this will trigger and update the playerdata",
+        "RegisterNetEvent('QBCore:Client:OnGangUpdate', function(GangInfo)",
+        "    PlayerData.gang = GangInfo",
+        "end)",
+        "",
+        "-- This will update all the PlayerData that doesn't get updated with a specific event other than this like the metadata",
+        "RegisterNetEvent('QBCore:Player:SetPlayerData', function(val)",
+        "    PlayerData = val",
+        "end)",
+        
+        ],
+        "description": "This is how to register playerdata without having to call the function everytime. -- Code thanks to BerkieB#5038"
+      },
 
-      " Progressbar" : { 
+
+      "Progressbar" : { 
        
         "prefix": "QBCore.Functions.Progressbar", 
          
         "body": [  
     
-        "QBCore.Functions.Progressbar = function(name, label, duration, useWhileDead, canCancel, disableControls, animation, prop, propTwo, onFinish, onCancel)",
-        "    exports['progressbar']:Progress({",
-        "        name = name:lower(),",
-        "        duration = duration,",
-        "        label = label,",
-        "        useWhileDead = useWhileDead,",
-        "        canCancel = canCancel,",
-        "        controlDisables = disableControls,",
-        "        animation = animation,",
-        "        prop = prop,",
-        "        propTwo = propTwo,",
-        "    }, function(cancelled)",
-        "        if not cancelled then",
-        "            if onFinish ~= nil then",
-        "                onFinish()",
-        "            end",
-        "        else",
-        "            if onCancel ~= nil then",
-        "                onCancel()",
-        "            end",
-        "        end",
-        "    end)",
-        "end",
+        "QBCore.Functions.Progressbar('name_here', 'Text that shows on bar...', 5000, false, true, { -- Name | Label | Time | useWhileDead | canCancel",
+        "    disableMovement = true,",
+        "    disableCarMovement = true,",
+        "    disableMouse = false,",
+        "    disableCombat = true,",
+        "}, {",
+        "    animDict = 'anim@gangops@facility@servers@',",
+        "    anim = 'hotwire',",
+        "    flags = 16,",
+        "}, {}, {}, function() -- Play When Done",
+        "    --Stuff goes here",
+        "    IsDrilling = false",
+        "end, function() -- Play When Cancel",
+        "    --Stuff goes here",
+        "end)",
         
         
         ],
         "description": "Allows you to call this function instead of using an export for the progress bar."
       },
 
-      " SpawnVehicle" : { 
+      "SpawnVehicle" : { 
        
         "prefix": "QBCore.Functions.SpawnVehicle", 
          
@@ -283,7 +368,7 @@
       },
 
 
-      " GetClosestVehicle" : { 
+      "GetClosestVehicle" : { 
        
         "prefix": "QBCore.Functions.GetClosestVehicle", 
          
@@ -316,7 +401,7 @@
       },
 
 
-      " SetVehicleProperties" : { 
+      "SetVehicleProperties" : { 
        
         "prefix": "QBCore.Functions.SetVehicleProperties", 
          
@@ -575,7 +660,7 @@
       },
 
 
-      " TriggerCallback" : { 
+      "TriggerCallback" : { 
        
         "prefix": "QBCore.Functions.TriggerCallback", 
          
@@ -592,7 +677,7 @@
       },
 
 
-      " DeleteVehicle" : { 
+      "DeleteVehicle" : { 
        
         "prefix": "QBCore.Functions.DeleteVehicle", 
          
@@ -608,7 +693,7 @@
       },
 
 
-      " ExampleManifest" : { 
+      "ExampleManifest" : { 
        
         "prefix": "QBCore.ExampleManifest", 
          
@@ -652,7 +737,7 @@
       },
 
 
-      " Kick" : { 
+      "Kick" : { 
        
         "prefix": "QBCore.Functions.Kick", 
          
@@ -697,7 +782,7 @@
       },
 
 
-      " GetPlayerByCitizenId" : { 
+      "GetPlayerByCitizenId" : { 
        
         "prefix": "QBCore.Functions.GetPlayerByCitizenId", 
          
@@ -718,7 +803,7 @@
       },
 
 
-      " LoadAnimDict" : { 
+      "LoadAnimDict" : { 
        
         "prefix": "LoadAnimDict", 
          
