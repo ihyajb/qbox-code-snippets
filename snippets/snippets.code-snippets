@@ -5,11 +5,10 @@
        
       "body": [  
   
-        "QBCore.Functions.Notify(text, textype, length) -- [text] = message, [type] = primary | error | success, [length] = time till fadeout.",
+        "QBCore.Functions.Notify('TextHere', 'error', 7500)",
       ],
       "description": "Allows you to use the built in notification system which means no dependency on another."
     },
-
 
     "GetPlayerData" : { 
        
@@ -17,44 +16,11 @@
          
         "body": [  
     
-        "QBCore.Functions.GetPlayerData = function(cb)",
-        "    if cb ~= nil then",
-        "        cb(QBCore.PlayerData)",
-        "    else",
-        "        return QBCore.PlayerData",
-        "    end",
-        "end",
+        "local PlayerData = QBCore.Functions.GetPlayerData()",
         
         ],
-        "description": "Perhaps the most used function in the framework. This functions returns the players data of the current source which, since its used client side, is automatically the client or player. It can be used with modifiers on the end starting with a '.' (period)."
+        "description": "Gets all the player data from the client"
       },
-
-    "oxmysql:execute" : { 
-      
-      "prefix": "exports.oxmysql:execute", 
-        
-      "body": [  
-  
-      "exports.oxmysql:execute('') { ",
-      " ",
-      "})",
-      ],
-      "description": "Uses the new oxmysql to execute"
-    },
-
-    "oxmysql:insert" : { 
-      
-      "prefix": "exports.oxmysql:insert", 
-        
-      "body": [  
-  
-      "exports.oxmysql:insert('') { ",
-      "    ",
-      "})",
-      ],
-      "description": "Uses the new oxmysql to insert"
-    },
-
 
       "GetCoreObject()" : { 
        
@@ -84,13 +50,10 @@
          
         "body": [  
     
-          "QBCore.Functions.HasItem(source , function(HasItem)",
-          "    $0",
-          "end , 'item Name')",
+          "QBCore.Functions.HasItem('ItemName)"
         ],
         "description": "Returns whether or not a player has a certain item."
       },
-
 
       "Add Commands" : { 
        
@@ -105,7 +68,6 @@
         "description": "Add a command using QBCore.Commands.Add"
       },
 
-
       "CreateUseableItem" : { 
        
         "prefix": "QBCore.Functions.CreateUseableItem", 
@@ -118,7 +80,6 @@
         ],
         "description": "Makes an item useable."
       },
-
 
       "DrawText" : { 
        
@@ -150,12 +111,13 @@
         "body": [  
     
           "CreateThread(function()",
-          "   while true do",
-          "   Wait(1)",
-          "    $0",
-          "end)",
+          "    while true do",
+          "        Wait(1)",
+          "        $0",
+          "    end",
+          "end)"
         ],
-        "description": "placeholder"
+        "description": "Create a thread"
       },
 
       "onResourceStart" : { 
@@ -197,28 +159,12 @@
          
         "body": [  
     
-          "RegisterNetEvent('EventNameHere')",
-          "AddEventHandler('EventNameHere', function(data)",
+          "RegisterNetEvent('EventNameHere', function(data)",
           "    $0",
           "end)",
         ],
         "description": "placeholder"
       },
-
-      "RegisterServerEvent" : { 
-       
-        "prefix": "RegisterServerEvent", 
-         
-        "body": [  
-    
-          "RegisterServerEvent('EventNameHere')",
-          "AddEventHandler('EventNameHere', function(data)",
-          "    $0",
-          "end)",
-        ],
-        "description": "placeholder"
-      },
-
 
       "DrawText3D" : { 
        
@@ -245,26 +191,16 @@
         "description": "Another very common function you will see throughout the framework. This allows you to draw floating 3D text on the screen."
       },
 
-
-      "GetPlayers" : { 
+      "GetPlayer" : { 
        
-        "prefix": "QBCore.Functions.GetPlayers", 
+        "prefix": "QBCore.Functions.GetPlayer", 
          
         "body": [  
     
-        "QBCore.Functions.GetPlayers = function()",
-        "    local players = {}",
-        "    for _, player in ipairs(GetActivePlayers()) do",
-        "        local ped = GetPlayerPed(player)",
-        "        if DoesEntityExist(ped) then",
-        "            table.insert(players, player)",
-        "        end",
-        "    end",
-        "    return players",
-        "end",
+        "local Player = QBCore.Functions.GetPlayer(source)",
         
         ],
-        "description": "This function returns a table of all the players currently in the server but is not onesync-infinity compatible when used on the client side. You can use # to return the number or json.encode(table) to return the JSON."
+        "description": "This returns the player (server side)"
       },
 
       "PlayerData " : { 
@@ -304,7 +240,6 @@
         "description": "This is how to register playerdata without having to call the function everytime. -- Code thanks to BerkieB#5038"
       },
 
-
       "Progressbar" : { 
        
         "prefix": "QBCore.Functions.Progressbar", 
@@ -322,7 +257,6 @@
         "    flags = 16,",
         "}, {}, {}, function() -- Play When Done",
         "    --Stuff goes here",
-        "    IsDrilling = false",
         "end, function() -- Play When Cancel",
         "    --Stuff goes here",
         "end)",
@@ -338,35 +272,13 @@
          
         "body": [  
     
-        "QBCore.Functions.SpawnVehicle = function(model, cb, coords, isnetworked)",
-        "    local model = (type(model)=='number' and model or GetHashKey(model))",
-        "    local coords = coords ~= nil and coords or QBCore.Functions.GetCoords(PlayerPedId())",
-        "    local isnetworked = isnetworked ~= nil and isnetworked or true",
-        " ",
-        "    RequestModel(model)",
-        "    while not HasModelLoaded(model) do",
-        "        Citizen.Wait(10)",
-        "    end",
-        " ",
-        "    local veh = CreateVehicle(model, coords.x, coords.y, coords.z, coords.a, isnetworked, false) -- SetEntityAsMissionEntity boolean",
-        "    local netid = NetworkGetNetworkIdFromEntity(veh)",
-        " ",
-        "    SetVehicleHasBeenOwnedByPlayer(vehicle,  true)",
-        "    SetNetworkIdCanMigrate(netid, true)",
-        "    SetVehicleNeedsToBeHotwired(veh, false)",
-        "    SetVehRadioStation(veh, false)",
-        " ",
-        "    SetModelAsNoLongerNeeded(model)",
-        " ",
-        "    if cb ~= nil then",
-        "        cb(veh)",
-        "    end",
-        "end",
+        "QBCore.Functions.SpawnVehicle(VehicleModel, function(veh)",
+        "    $0",
+        "end, coords, true)"
         
         ],
         "description": "Spawns a specific vehicle model."
       },
-
 
       "GetClosestVehicle" : { 
        
@@ -374,291 +286,11 @@
          
         "body": [  
     
-        "QBCore.Functions.GetClosestVehicle = function(coords)",
-        "    local vehicles        = QBCore.Functions.GetVehicles()",
-        "    local closestDistance = -1",
-        "    local closestVehicle  = -1",
-        "    local coords          = coords",
-        " ",
-        "    if coords == nil then",
-        "        local playerPed = PlayerPedId()",
-        "        coords = GetEntityCoords(playerPed)",
-        "    end",
-        "    for i=1, #vehicles, 1 do",
-        "        local vehicleCoords = GetEntityCoords(vehicles[i])",
-        "        local distance = #(vehicleCoords - coords)",
-        " ",
-        "        if closestDistance == -1 or closestDistance > distance then",
-        "            closestVehicle  = vehicles[i]",
-        "            closestDistance = distance",
-        "        end",
-        "    end",
-        "    return closestVehicle",
-        "end",
+        "local vehicle = QBCore.Functions.GetClosestVehicle()",
         
         ],
         "description": "Returns the closest vehicle to the player at the time."
       },
-
-
-      "SetVehicleProperties" : { 
-       
-        "prefix": "QBCore.Functions.SetVehicleProperties", 
-         
-        "body": [  
-    
-        "QBCore.Functions.SetVehicleProperties = function(vehicle, props)",
-        "    SetVehicleModKit(vehicle, 0)",
-        " ",
-        "    if props.plate ~= nil then",
-        "        SetVehicleNumberPlateText(vehicle, props.plate)",
-        "    end",
-        " ",
-        "    if props.plateIndex ~= nil then",
-        "        SetVehicleNumberPlateTextIndex(vehicle, props.plateIndex)",
-        "    end",
-        " ",
-        "    if props.health ~= nil then",
-        "        SetEntityHealth(vehicle, props.health)",
-        "    end",
-        " ",
-        "    if props.dirtLevel ~= nil then",
-        "        SetVehicleDirtLevel(vehicle, props.dirtLevel)",
-        "    end",
-        " ",
-        "    if props.color1 ~= nil then",
-        "        local color1, color2 = GetVehicleColours(vehicle)",
-        "        SetVehicleColours(vehicle, props.color1, color2)",
-        "    end ",
-        " ",
-        "    if props.color2 ~= nil then",
-        "        local color1, color2 = GetVehicleColours(vehicle)",
-        "        SetVehicleColours(vehicle, color1, props.color2)",
-        "    end",
-        " ",
-        "    if props.pearlescentColor ~= nil then",
-        "        local pearlescentColor, wheelColor = GetVehicleExtraColours(vehicle)",
-        "        SetVehicleExtraColours(vehicle, props.pearlescentColor, wheelColor)",
-        "    end",
-        " ",
-        "    if props.wheelColor ~= nil then",
-        "        local pearlescentColor, wheelColor = GetVehicleExtraColours(vehicle)",
-        "        SetVehicleExtraColours(vehicle, pearlescentColor, props.wheelColor)",
-        "    end",
-        " ",
-        "    if props.wheels ~= nil then",
-        "        SetVehicleWheelType(vehicle, props.wheels)",
-        "    end",
-        " ",
-        "    if props.windowTint ~= nil then",
-        "        SetVehicleWindowTint(vehicle, props.windowTint)",
-        "    end",
-        " ",
-        "    if props.neonEnabled ~= nil then",
-        "        SetVehicleNeonLightEnabled(vehicle, 0, props.neonEnabled[1])",
-        "        SetVehicleNeonLightEnabled(vehicle, 1, props.neonEnabled[2])",
-        "        SetVehicleNeonLightEnabled(vehicle, 2, props.neonEnabled[3])",
-        "        SetVehicleNeonLightEnabled(vehicle, 3, props.neonEnabled[4])",
-        "    end",
-        " ",
-        "    if props.neonColor ~= nil then",
-        "        SetVehicleNeonLightsColour(vehicle, props.neonColor[1], props.neonColor[2], props.neonColor[3])",
-        "    end",
-        " ",
-        "    if props.modSmokeEnabled ~= nil then",
-        "        ToggleVehicleMod(vehicle, 20, true)",
-        "    end",
-        " ",
-        "    if props.tyreSmokeColor ~= nil then",
-        "        SetVehicleTyreSmokeColor(vehicle, props.tyreSmokeColor[1], props.tyreSmokeColor[2], props.tyreSmokeColor[3])",
-        "    end",
-        " ",
-        "    if props.modSpoilers ~= nil then",
-        "        SetVehicleMod(vehicle, 0, props.modSpoilers, false)",
-        "    end",
-        " ",
-        "    if props.modFrontBumper ~= nil then",
-        "        SetVehicleMod(vehicle, 1, props.modFrontBumper, false)",
-        "    end",
-        " ",
-        "    if props.modRearBumper ~= nil then",
-        "        SetVehicleMod(vehicle, 2, props.modRearBumper, false)",
-        "    end",
-        " ",
-        "    if props.modSideSkirt ~= nil then",
-        "        SetVehicleMod(vehicle, 3, props.modSideSkirt, false)",
-        "    end",
-        " ",
-        "    if props.modExhaust ~= nil then",
-        "        SetVehicleMod(vehicle, 4, props.modExhaust, false)",
-        "    end",
-        " ",
-        "    if props.modFrame ~= nil then",
-        "        SetVehicleMod(vehicle, 5, props.modFrame, false)",
-        "    end",
-        " ",
-        "    if props.modGrille ~= nil then",
-        "        SetVehicleMod(vehicle, 6, props.modGrille, false)",
-        "    end",
-        " ",
-        "    if props.modHood ~= nil then",
-        "        SetVehicleMod(vehicle, 7, props.modHood, false)",
-        "    end",
-        " ",
-        "    if props.modFender ~= nil then",
-        "        SetVehicleMod(vehicle, 8, props.modFender, false)",
-        "    end",
-        " ",
-        "    if props.modRightFender ~= nil then ",
-        "        SetVehicleMod(vehicle, 9, props.modRightFender, false)",
-        "    end",
-        " ",
-        "    if props.modRoof ~= nil then",
-        "        SetVehicleMod(vehicle, 10, props.modRoof, false)",
-        "    end",
-        " ",
-        "    if props.modEngine ~= nil then",
-        "        SetVehicleMod(vehicle, 11, props.modEngine, false)",
-        "    end",
-        " ", 
-        "    if props.modBrakes ~= nil then",
-        "        SetVehicleMod(vehicle, 12, props.modBrakes, false)",
-        "    end",
-        " ",
-        "    if props.modTransmission ~= nil then",
-        "        SetVehicleMod(vehicle, 13, props.modTransmission, false)",
-        "    end",
-        " ",
-        "    if props.modHorns ~= nil then",
-        "        SetVehicleMod(vehicle, 14, props.modHorns, false)",
-        "    end",
-        " ",
-        "    if props.modSuspension ~= nil then",
-        "        SetVehicleMod(vehicle, 15, props.modSuspension, false)",
-        "    end",
-        " ",
-        "    if props.modArmor ~= nil then",
-        "        SetVehicleMod(vehicle, 16, props.modArmor, false)",
-        "    end",
-        " ",
-        "    if props.modTurbo ~= nil then",
-        "        ToggleVehicleMod(vehicle,  18, props.modTurbo)",
-        "    end",
-        " ",
-        "    if props.modXenon ~= nil then",
-        "        ToggleVehicleMod(vehicle,  22, props.modXenon)",
-        "    end",
-        " ",
-        "    if props.modFrontWheels ~= nil then",
-        "        SetVehicleMod(vehicle, 23, props.modFrontWheels, false)",
-        "    end",
-        " ",
-        "    if props.modBackWheels ~= nil then",
-        "        SetVehicleMod(vehicle, 24, props.modBackWheels, false)",
-        "    end",
-        " ",
-        "    if props.modPlateHolder ~= nil then",
-        "        SetVehicleMod(vehicle, 25, props.modPlateHolder, false)",
-        "    end",
-        " ",
-        "    if props.modVanityPlate ~= nil then",
-        "        SetVehicleMod(vehicle, 26, props.modVanityPlate, false)",
-        "    end",
-        " ",
-        "    if props.modTrimA ~= nil then",
-        "        SetVehicleMod(vehicle, 27, props.modTrimA, false)",
-        "    end",
-        " ",
-        "    if props.modOrnaments ~= nil then",
-        "        SetVehicleMod(vehicle, 28, props.modOrnaments, false)",
-        "    end",
-        " ",
-        "    if props.modDashboard ~= nil then",
-        "        SetVehicleMod(vehicle, 29, props.modDashboard, false)",
-        "    end",
-        " ",
-        "    if props.modDial ~= nil then",
-        "        SetVehicleMod(vehicle, 30, props.modDial, false)",
-        "    end",
-        " ",
-        "    if props.modDoorSpeaker ~= nil then",
-        "        SetVehicleMod(vehicle, 31, props.modDoorSpeaker, false)",
-        "    end",
-        " ",
-        "    if props.modSeats ~= nil then",
-        "        SetVehicleMod(vehicle, 32, props.modSeats, false)",
-        "    end",
-        " ",
-        "    if props.modSteeringWheel ~= nil then",
-        "        SetVehicleMod(vehicle, 33, props.modSteeringWheel, false)",
-        "    end",
-        " ",
-        "    if props.modShifterLeavers ~= nil then",
-        "        SetVehicleMod(vehicle, 34, props.modShifterLeavers, false)",
-        "    end",
-        " ",
-        "    if props.modAPlate ~= nil then",
-        "        SetVehicleMod(vehicle, 35, props.modAPlate, false)",
-        "    end",
-        " ",
-        "    if props.modSpeakers ~= nil then",
-        "        SetVehicleMod(vehicle, 36, props.modSpeakers, false)",
-        "    end",
-        " ",
-        "    if props.modTrunk ~= nil then",
-        "        SetVehicleMod(vehicle, 37, props.modTrunk, false)",
-        "    end",
-        " ",
-        "    if props.modHydrolic ~= nil then",
-        "        SetVehicleMod(vehicle, 38, props.modHydrolic, false)",
-        "    end",
-        " ",
-        "    if props.modEngineBlock ~= nil then",
-        "        SetVehicleMod(vehicle, 39, props.modEngineBlock, false)",
-        "    end",
-        " ",
-        "    if props.modAirFilter ~= nil then",
-        "        SetVehicleMod(vehicle, 40, props.modAirFilter, false)",
-        "    end",
-        " ",
-        "    if props.modStruts ~= nil then",
-        "        SetVehicleMod(vehicle, 41, props.modStruts, false)",
-        "    end",
-        " ",
-        "    if props.modArchCover ~= nil then",
-        "        SetVehicleMod(vehicle, 42, props.modArchCover, false)",
-        "    end",
-        " ",
-        "    if props.modAerials ~= nil then",
-        "        SetVehicleMod(vehicle, 43, props.modAerials, false)",
-        "    end",
-        " ",
-        "    if props.modTrimB ~= nil then",
-        "        SetVehicleMod(vehicle, 44, props.modTrimB, false)",
-        "    end",
-        " ",
-        "    if props.modTank ~= nil then",
-        "        SetVehicleMod(vehicle, 45, props.modTank, false)",
-        "    end",
-        " ",
-        "    if props.modWindows ~= nil then",
-        "        SetVehicleMod(vehicle, 46, props.modWindows, false)",
-        "    end",
-        " ",
-        "    if props.modLivery ~= nil then",
-        "        SetVehicleMod(vehicle, 48, props.modLivery, false)",
-        "        SetVehicleLivery(vehicle, props.modLivery)",
-        "    end",
-        "    if props.modCustomTyres ~= nil and props.modCustomTyres then ",
-        "        SetVehicleMod(vehicle, 23, props.modCustomTyres, true)",
-        "    end",
-        "end",
-        
-        
-        ],
-        "description": "Applies properties to a specific vehicle."
-      },
-
 
       "TriggerCallback" : { 
        
@@ -666,16 +298,14 @@
          
         "body": [  
     
-        "QBCore.Functions.TriggerCallback = function(name, cb, ...)",
-        "    QBCore.ServerCallbacks[name] = cb",
-        "    TriggerServerEvent('QBCore:Server:TriggerCallback', name, ...)",
-        "end",
+        "QBCore.Functions.TriggerCallback('CallbackName', function(result)",
+        "    $0",
+        "end)",
         
         
         ],
         "description": "Allows you to retrieve information by calling to the server and getting something in return."
       },
-
 
       "DeleteVehicle" : { 
        
@@ -683,15 +313,11 @@
          
         "body": [  
     
-        "QBCore.Functions.DeleteVehicle = function(vehicle)",
-        "    SetEntityAsMissionEntity(vehicle, true, true)",
-        "    DeleteVehicle(vehicle)",
-        "end",
+        "QBCore.Functions.DeleteVehicle(Vehicle)",
         
         ],
         "description": "Deletes vehicle entity."
       },
-
 
       "ExampleManifest" : { 
        
@@ -736,73 +362,6 @@
         "description": "Pastes an Example Manifest for you to edit."
       },
 
-
-      "Kick" : { 
-       
-        "prefix": "QBCore.Functions.Kick", 
-         
-        "body": [  
-    
-      "QBCore.Functions.Kick = function(source, reason, setKickReason, deferrals)",
-      "    local src = source",
-      "    reason = '\n'..reason..'\n🔸 Check our Discord for further information: '..QBCore.Config.Server.discord",
-      "    if(setKickReason ~=nil) then",
-      "        setKickReason(reason)",
-      "    end",
-      "    Citizen.CreateThread(function()",
-      "        if(deferrals ~= nil)then",
-      "            deferrals.update(reason)",
-      "            Citizen.Wait(2500)",
-      "        end",
-      "        if src ~= nil then",
-      "            DropPlayer(src, reason)",
-      "        end",
-      "        local i = 0",
-      "        while (i <= 4) do",
-      "            i = i + 1",
-      "            while true do",
-      "                if src ~= nil then",
-      "                    if(GetPlayerPing(src) >= 0) then",
-      "                        break",
-      "                    end",
-      "                    Citizen.Wait(100)",
-      "                    Citizen.CreateThread(function() ",
-      "                        DropPlayer(src, reason)",
-      "                    end)",
-      "                end",
-      "            end",
-      "            Citizen.Wait(5000)",
-      "        end",
-      "    end)",
-      "end",
-        
-
-        ],
-        "description": "Kicks an specified source from the server with a reason."
-      },
-
-
-      "GetPlayerByCitizenId" : { 
-       
-        "prefix": "QBCore.Functions.GetPlayerByCitizenId", 
-         
-        "body": [  
-    
-      "QBCore.Functions.GetPlayerByCitizenId = function(citizenid)",
-      "    for src, player in pairs(QBCore.Players) do",
-      "        local cid = citizenid",
-      "        if QBCore.Players[src].PlayerData.citizenid == cid then",
-      "            return QBCore.Players[src]",
-      "        end",
-      "    end",
-      "    return nil",
-      "end",
-
-        ],
-        "description": "A specified player's source."
-      },
-
-
       "LoadAnimDict" : { 
        
         "prefix": "LoadAnimDict", 
@@ -818,5 +377,33 @@
 
         ],
         "description": "Loads an Animation before its called"
+      },
+
+      "qb-target Box Zone" : { 
+       
+        "prefix": "AddBoxZone", 
+         
+        "body": [  
+
+      "exports['qb-target']:AddBoxZone('BoxZoneName', vector3(123.4, -567.8, 910.11), 1, 1, {",
+      "    name='BoxZoneName',",
+      "    heading=57.45,",
+      "    debugPoly=false,",
+      "    minZ = 6.04,",
+      "    maxZ = 7.64,",
+      "    }, {",
+      "        options = {",
+      "            {",
+      "                type = 'client',",
+      "                event = 'ClientEventName',",
+      "                icon = 'fas fa-user',",
+      "                label = 'Target Label',",
+      "            },",
+      "        },",
+      "    distance = 3.5",
+      "})",
+
+        ],
+        "description": "Calls an export from qb-target"
       },
 }

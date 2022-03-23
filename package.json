@@ -9,7 +9,7 @@
     "description": "VSCode Snippets for the QBCore FiveM Framework",
     "icon": "images/logo.png",
     "qna": "marketplace",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "engines": {
         "vscode": "^1.58.0"
     },
