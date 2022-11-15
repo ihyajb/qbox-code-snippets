@@ -9,7 +9,7 @@
     "description": "Snippets for FiveM and the Qbox Framework",
     "icon": "images/duck.png",
     "qna": "marketplace",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "engines": {
         "vscode": "^1.58.0"
     },
