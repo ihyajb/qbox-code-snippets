@@ -15,7 +15,7 @@ This extension provides Lua code snippets commonly used for FiveM, and the QBCor
 3. On the left side of Visual Studio Code select `Extensions`
 4. Click "Search Extensions in Marketplace"
 5. Type `ihyajb`
-6. Click Install on `QBCore Code Snippets`
+6. Click Install on `Qbox Code Snippets`
 7. Reload Visual Studio Code
 
 ## Useful Links

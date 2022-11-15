@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.1.1
+
+- Spelling Errors
+- Github Publish Workflow
+
 ## 1.1.0
 
 - Changed name to `Qbox Code Snippets`
