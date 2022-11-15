@@ -2,6 +2,16 @@
 
 All notable changes to the "qbcore-code-snippets" extension will be documented in this file.
 
+## [1.0.0]
+
+- Version Bump
+- Corrected my discord tag
+- Defined where a snippet is used
+- Deleted old snippets
+- Fixed Spelling Errors / Missing Symbols
+- Added a new snippet `QBCore.Setup`
+- Added a new snippet `QBCore.Libcallback`
+
 ## [0.0.6]
 
 - Code Clean up

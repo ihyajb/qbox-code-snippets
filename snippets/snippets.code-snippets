@@ -1,5 +1,5 @@
 {    
-    "Notify" : { 
+    "(Client) Notify" : { 
        
       "prefix": "QBCore.Functions.Notify", 
        
@@ -10,7 +10,7 @@
       "description": "Allows you to use the built in notification system which means no dependency on another."
     },
 
-    "GetPlayerData" : { 
+    "(Client) GetPlayerData" : { 
        
         "prefix": "QBCore.Functions.GetPlayerData", 
          
@@ -22,18 +22,18 @@
         "description": "Gets all the player data from the client"
       },
 
-      "GetCoreObject()" : { 
+      "(Client / Server) GetCoreObject()" : { 
        
-        "prefix": "exports['qb-core']:GetCoreObject()", 
+        "prefix": "GetCoreObject", 
          
         "body": [  
     
-          "exports['qb-core']:GetCoreObject()",
+          "local QBCore = exports['qb-core']:GetCoreObject()",
         ],
-        "description": "QBCore new export method"
+        "description": "Imports QBCore into a file"
       },
 
-      "isLoggedIn" : { 
+      "(Client) isLoggedIn" : { 
        
         "prefix": "LocalPlayer.state['isLoggedIn']", 
          
@@ -44,18 +44,18 @@
         "description": "QBCore new isLoggedIn method"
       },
 
-      "HasItem" : { 
+      "(Client) HasItem" : { 
        
         "prefix": "QBCore.Functions.HasItem", 
          
         "body": [  
     
-          "QBCore.Functions.HasItem('ItemName)"
+          "QBCore.Functions.HasItem('ItemName')"
         ],
         "description": "Returns whether or not a player has a certain item."
       },
 
-      "Add Commands" : { 
+      "(Server) Add Commands" : { 
        
         "prefix": "QBCore.Commands.Add", 
          
@@ -68,43 +68,20 @@
         "description": "Add a command using QBCore.Commands.Add"
       },
 
-      "CreateUseableItem" : { 
+      "(Server) CreateUseableItem" : { 
        
         "prefix": "QBCore.Functions.CreateUseableItem", 
          
         "body": [  
     
-          "QBCore.Functions.CreateUseableItem(item , function(item)",
+          "QBCore.Functions.CreateUseableItem('itemName' , function(item)",
           "    $0",
           "end)",
         ],
         "description": "Makes an item useable."
       },
 
-      "DrawText" : { 
-       
-        "prefix": "QBCore.Functions.DrawText", 
-         
-        "body": [  
-    
-          "function DrawText(x, y, width, height, scale, r, g, b, a, text)",
-          "    SetTextFont(4)",
-          "    SetTextProportional(0)",
-          "    SetTextScale(scale, scale)",
-          "    SetTextColour(r, g, b, a)",
-          "    SetTextDropShadow(0, 0, 0, 0,255)",
-          "    SetTextEdge(2, 0, 0, 0, 255)",
-          "    SetTextDropShadow()",
-          "    SetTextOutline()",
-          "    SetTextEntry('STRING')",
-          "    AddTextComponentString(text)",
-          "    DrawText(x - width/2, y - height/2 + 0.005)",
-          "end",
-        ],
-        "description": "Not used as commonly as 3D text, you can draw text on the screen with this function which makes it more convenient than having to make a new function locally."
-      },
-
-      "CreateThread" : { 
+      "(Client / Server) CreateThread" : { 
        
         "prefix": "CreateThread", 
          
@@ -120,7 +97,7 @@
         "description": "Create a thread"
       },
 
-      "onResourceStart" : { 
+      "(Client / Server) onResourceStart" : { 
        
         "prefix": "onResourceStart", 
          
@@ -128,8 +105,7 @@
     
           "AddEventHandler('onResourceStart', function(resource)",
           "   if resource == GetCurrentResourceName() then",
-          "      Wait(100)",
-          "      --Do Stuff here$0",
+          "      $0",
           "   end",
           "end)",
 
@@ -137,7 +113,7 @@
         "description": "This code runs as soon as a resource starts."
       },
 
-      "onResourceStop" : { 
+      "(Client / Server) onResourceStop" : { 
        
         "prefix": "onResourceStop", 
          
@@ -145,7 +121,7 @@
     
           "AddEventHandler('onResourceStop', function(resource)",
           "   if resource == GetCurrentResourceName() then",
-          "      --Do Stuff here$0",
+          "      $0",
           "   end",
           "end)",
 
@@ -153,7 +129,7 @@
         "description": "This code runs as soon as a resource is stopped."
       },
       
-      "RegisterNetEvent" : { 
+      "(Client / Server) RegisterNetEvent" : { 
        
         "prefix": "RegisterNetEvent", 
          
@@ -166,32 +142,7 @@
         "description": "placeholder"
       },
 
-      "DrawText3D" : { 
-       
-        "prefix": "QBCore.Functions.DrawText3D", 
-         
-        "body": [  
-    
-          "function DrawText3D(x, y, z, text)",
-          "    SetTextScale(0.35, 0.35)",
-          "    SetTextFont(4)",
-          "    SetTextProportional(1)",
-          "    SetTextColour(255, 255, 255, 215)",
-          "    SetTextEntry('STRING')",
-          "    SetTextCentre(true)",
-          "    AddTextComponentString(text)",
-          "    SetDrawOrigin(x,y,z, 0)",
-          "    DrawText(0.0, 0.0)",
-          "    local factor = (string.len(text)) / 370",
-          "    DrawRect(0.0, 0.0+0.0125, 0.017+ factor, 0.03, 0, 0, 0, 75)",
-          "    ClearDrawOrigin()",
-          "end",
-
-        ],
-        "description": "Another very common function you will see throughout the framework. This allows you to draw floating 3D text on the screen."
-      },
-
-      "GetPlayer" : { 
+      "(Server) GetPlayer" : { 
        
         "prefix": "QBCore.Functions.GetPlayer", 
          
@@ -203,7 +154,7 @@
         "description": "This returns the player (server side)"
       },
 
-      "PlayerData " : { 
+      "(Client) PlayerData " : { 
        
         "prefix": "PlayerData ", 
          
@@ -240,7 +191,7 @@
         "description": "This is how to register playerdata without having to call the function everytime. -- Code thanks to BerkieB#5038"
       },
 
-      "Progressbar" : { 
+      "(Client) Progressbar" : { 
        
         "prefix": "QBCore.Functions.Progressbar", 
          
@@ -266,13 +217,13 @@
         "description": "Allows you to call this function instead of using an export for the progress bar."
       },
 
-      "SpawnVehicle" : { 
+      "(Client) SpawnVehicle" : { 
        
         "prefix": "QBCore.Functions.SpawnVehicle", 
          
         "body": [  
     
-        "QBCore.Functions.SpawnVehicle(VehicleModel, function(veh)",
+        "QBCore.Functions.SpawnVehicle('VehicleModel', function(veh)",
         "    $0",
         "end, coords, true)"
         
@@ -280,7 +231,7 @@
         "description": "Spawns a specific vehicle model."
       },
 
-      "GetClosestVehicle" : { 
+      "(Client) GetClosestVehicle" : { 
        
         "prefix": "QBCore.Functions.GetClosestVehicle", 
          
@@ -292,7 +243,7 @@
         "description": "Returns the closest vehicle to the player at the time."
       },
 
-      "TriggerCallback" : { 
+      "(Client) TriggerCallback" : { 
        
         "prefix": "QBCore.Functions.TriggerCallback", 
          
@@ -307,18 +258,6 @@
         "description": "Allows you to retrieve information by calling to the server and getting something in return."
       },
 
-      "DeleteVehicle" : { 
-       
-        "prefix": "QBCore.Functions.DeleteVehicle", 
-         
-        "body": [  
-    
-        "QBCore.Functions.DeleteVehicle(Vehicle)",
-        
-        ],
-        "description": "Deletes vehicle entity."
-      },
-
       "ExampleManifest" : { 
        
         "prefix": "QBCore.ExampleManifest", 
@@ -328,22 +267,20 @@
             "fx_version 'cerulean'",
             "game 'gta5'",
             " ",
-            "description 'QBCore Example Manifest'",
+            "description 'Example Manifest'",
             "version '1.0.0'",
             " ",
-            "lua54 'yes' -- Add in case you want to use lua 5.4 (https://www.lua.org/manual/5.4/manual.html)",
+            "lua54 'yes'",
             " ",
             "shared_script { ",
-            "    '@qb-core/import.lua'",
+            "    'config.lua'",
             "}",
             " ",
             "client_scripts {",
-            "    'config/config_cl.lua', -- Non globbing method (Client config)",
             "    'client/*.lua' -- Globbing method for multiple files",
             "}",
             " ",
             "server_scripts {",
-            "    'config/config_sv.lua', -- Non globbing method (Server config for keeping webhooks or other important information)",
             "    'server/*.lua' -- Globbing method for multiple files",
             "}",
             " ",
@@ -355,14 +292,11 @@
             "    --'html/js/*.js', -- Globbing also works here in case you have multiple js files",
             "    'html/js/app.js'",
             "}",
-            " ",
-            "dependency 'qb-core'",
-        
         ],
         "description": "Pastes an Example Manifest for you to edit."
       },
 
-      "LoadAnimDict" : { 
+      "(Client) LoadAnimDict" : { 
        
         "prefix": "LoadAnimDict", 
          
@@ -405,5 +339,52 @@
 
         ],
         "description": "Calls an export from qb-target"
+      },
+
+      "(Client) Resource Setup" : { 
+       
+        "prefix": "QBCore.Setup", 
+         
+        "body": [  
+
+          "QBCore = exports['qb-core']:GetCoreObject()",
+          "PlayerLoaded = false",
+          "PlayerData = {}",
+          "",
+          "---@diagnostic disable-next-line: param-type-mismatch",
+          "AddStateBagChangeHandler('isLoggedIn', nil, function(_bagName, _key, value, _reserved, _replicated)",
+          "    if value then PlayerData = QBCore.Functions.GetPlayerData() else table.wipe(PlayerData) end",
+          "    PlayerLoaded = value",
+          "end)",
+          "",
+          "AddEventHandler('onResourceStart', function(resourceName)",
+          "    if GetCurrentResourceName() ~= resourceName or not LocalPlayer.state.isLoggedIn then return end",
+          "    PlayerData = QBCore.Functions.GetPlayerData()",
+          "    PlayerLoaded = true",
+          "end)",
+          "",
+          "AddEventHandler('QBCore:Player:SetPlayerData', function(newPlayerData) ",
+          "    local invokingResource = GetInvokingResource()",
+          "    if invokingResource and invokingResource ~= 'qb-core' then return end",
+          "    PlayerData = newPlayerData",
+          "end)",
+
+        ],
+        "description": "From DisplayTabs#9721 in the QBox Discord"
+      },
+
+      "(Server) OxLib Callback" : { 
+       
+        "prefix": "QBCore.Libcallback", 
+         
+        "body": [  
+
+          "lib.callback.register('CallbackName', function(source)",
+          "    $0",
+          "    return true",
+          "end)",
+
+        ],
+        "description": "OxLib Callback System"
       },
 }

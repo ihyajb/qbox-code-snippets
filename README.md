@@ -1,15 +1,15 @@
 # ***README***
 ## **Credit**
 
-Extension created by ihyajb#7177
+Extension created by ihyajb#9723
 
-All credit goes to the [QBCore Documentation](https://www.qbcore.org/#/./about?id=official-qbcore-framework-documentatione), Bombay#9032 and Kakarot#2550
-
-Along with other users from the [QBCore Discord](https://discord.gg/qbcore) who helped!
+Feel free to make PR's to improve snippets<br>If you plan on using the full repo as a base for a new snippet extention, please reach out to me first 💖
 
 ## Features
 
-QBCore FiveM Framework Code Snippets
+* QBcore / Qbox Code Snippets
+* FiveM Code Snippets
+* OxLib Code Snippets (WIP)
 
 Description of the code and what it does
 
@@ -23,11 +23,18 @@ Description of the code and what it does
 6. Click Install on `QBCore Code Snippets`
 7. Reload Visual Studio Code
 
-## Known Issues
-
-Some Documentation may currently be outdated (Will be fixed as soon as the new docs come out)
-
 ## Release Notes
+
+### 1.0.0
+
+- Version Bump
+- Corrected my discord tag
+- Made the repo public once again
+- Defined where a snippet is used
+- Deleted old snippets
+- Fixed Spelling Errors / Missing Symbols
+- Added a new snippet `QBCore.Setup`
+- Added a new snippet `QBCore.Libcallback`
 
 ### 0.0.6
 
