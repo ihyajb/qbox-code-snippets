@@ -1,8 +1,16 @@
 # Change Log
 
-All notable changes to the "qbcore-code-snippets" extension will be documented in this file.
+## 1.1.0
 
-## [1.0.0]
+- Changed name to `Qbox Code Snippets`
+- Github Issue Templates
+- Removed Changelog from `README.md`
+- Updated extension description
+- Changed Internal Snippet Setup
+- Added more `ox_lib` extentions
+- `QBCore.ExampleManifest` is now just `ExampleManifest`
+
+## 1.0.0
 
 - Version Bump
 - Corrected my discord tag
@@ -12,7 +20,7 @@ All notable changes to the "qbcore-code-snippets" extension will be documented i
 - Added a new snippet `QBCore.Setup`
 - Added a new snippet `QBCore.Libcallback`
 
-## [0.0.6]
+## 0.0.6
 
 - Code Clean up
 - Added new GetCoreObject() snippet
@@ -22,7 +30,7 @@ All notable changes to the "qbcore-code-snippets" extension will be documented i
 - New Progressbar code
 - and more...
 
-## [0.0.5]
+## 0.0.5
 
 - Started to add oxmysql stuff
 - The cursor location is now in the correct spot for fast typing
@@ -32,11 +40,11 @@ All notable changes to the "qbcore-code-snippets" extension will be documented i
 - Added CreateThread
 - Removed Old QBCore.Functions.ExecuteSql
 
-## [0.0.4]
+## 0.0.4
 
 - Nothing of intrest
 
-## [0.0.3]
+## 0.0.3
 
 - Added Kick Snippet
 - Added GetPlayerByCitizenId Snippet

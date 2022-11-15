@@ -1,390 +1,402 @@
-{    
-    "(Client) Notify" : { 
-       
-      "prefix": "QBCore.Functions.Notify", 
-       
-      "body": [  
-  
-        "QBCore.Functions.Notify('TextHere', 'error', 7500)",
-      ],
-      "description": "Allows you to use the built in notification system which means no dependency on another."
-    },
+{
+	// QBCore / Qbox Shit
 
-    "(Client) GetPlayerData" : { 
-       
-        "prefix": "QBCore.Functions.GetPlayerData", 
-         
-        "body": [  
-    
-        "local PlayerData = QBCore.Functions.GetPlayerData()",
-        
-        ],
-        "description": "Gets all the player data from the client"
-      },
+	"(Client) Notify" : { 
+		
+		"prefix": "QBCore.Functions.Notify", 
+		
+		"body": [  
+	
+		"QBCore.Functions.Notify('TextHere', 'error', 7500)",
+		],
+		"description": "Allows you to use the built in notification system which means no dependency on another."
+	},
 
-      "(Client / Server) GetCoreObject()" : { 
-       
-        "prefix": "GetCoreObject", 
-         
-        "body": [  
-    
-          "local QBCore = exports['qb-core']:GetCoreObject()",
-        ],
-        "description": "Imports QBCore into a file"
-      },
+	"(Client) GetPlayerData" : { 
+	
+		"prefix": "QBCore.Functions.GetPlayerData", 
+		
+		"body": [  
+	
+		"local PlayerData = QBCore.Functions.GetPlayerData()",
+		
+		],
+		"description": "Gets all the player data from the client"
+	},
 
-      "(Client) isLoggedIn" : { 
-       
-        "prefix": "LocalPlayer.state['isLoggedIn']", 
-         
-        "body": [  
-    
-          "LocalPlayer.state['isLoggedIn']",
-        ],
-        "description": "QBCore new isLoggedIn method"
-      },
+	"(Client / Server) GetCoreObject()" : { 
+	
+		"prefix": "GetCoreObject", 
+		
+		"body": [  
+	
+		"local QBCore = exports['qb-core']:GetCoreObject()",
+		],
+		"description": "Imports QBCore into a file"
+	},
 
-      "(Client) HasItem" : { 
-       
-        "prefix": "QBCore.Functions.HasItem", 
-         
-        "body": [  
-    
-          "QBCore.Functions.HasItem('ItemName')"
-        ],
-        "description": "Returns whether or not a player has a certain item."
-      },
+	"(Client) isLoggedIn" : { 
+	
+		"prefix": "LocalPlayer.state['isLoggedIn']", 
+		
+		"body": [  
+	
+		"LocalPlayer.state['isLoggedIn']",
+		],
+		"description": "QBCore new isLoggedIn method"
+	},
 
-      "(Server) Add Commands" : { 
-       
-        "prefix": "QBCore.Commands.Add", 
-         
-        "body": [  
-    
-          "QBCore.Commands.Add('commandnamehere', 'help text here', {}, false, function(source, args)",
-          "    $0",
-          "end)",
-        ],
-        "description": "Add a command using QBCore.Commands.Add"
-      },
+	"(Client) HasItem" : { 
+	
+		"prefix": "QBCore.Functions.HasItem", 
+		
+		"body": [  
+	
+		"QBCore.Functions.HasItem('ItemName')"
+		],
+		"description": "Returns whether or not a player has a certain item."
+	},
 
-      "(Server) CreateUseableItem" : { 
-       
-        "prefix": "QBCore.Functions.CreateUseableItem", 
-         
-        "body": [  
-    
-          "QBCore.Functions.CreateUseableItem('itemName' , function(item)",
-          "    $0",
-          "end)",
-        ],
-        "description": "Makes an item useable."
-      },
+	"(Server) Add Commands" : { 
+	
+		"prefix": "QBCore.Commands.Add", 
+		
+		"body": [  
+	
+		"QBCore.Commands.Add('commandnamehere', 'help text here', {}, false, function(source, args)",
+		"    $0",
+		"end)",
+		],
+		"description": "Add a command using QBCore.Commands.Add"
+	},
 
-      "(Client / Server) CreateThread" : { 
-       
-        "prefix": "CreateThread", 
-         
-        "body": [  
-    
-          "CreateThread(function()",
-          "    while true do",
-          "        Wait(1)",
-          "        $0",
-          "    end",
-          "end)"
-        ],
-        "description": "Create a thread"
-      },
+	"(Server) CreateUseableItem" : { 
+	
+		"prefix": "QBCore.Functions.CreateUseableItem", 
+		
+		"body": [  
+	
+		"QBCore.Functions.CreateUseableItem('itemName' , function(item)",
+		"    $0",
+		"end)",
+		],
+		"description": "Makes an item useable."
+	},
 
-      "(Client / Server) onResourceStart" : { 
-       
-        "prefix": "onResourceStart", 
-         
-        "body": [  
-    
-          "AddEventHandler('onResourceStart', function(resource)",
-          "   if resource == GetCurrentResourceName() then",
-          "      $0",
-          "   end",
-          "end)",
+	"(Server) GetPlayer" : { 
+	
+		"prefix": "QBCore.Functions.GetPlayer", 
+		
+		"body": [  
+	
+		"local Player = QBCore.Functions.GetPlayer(source)",
+		
+		],
+		"description": "This returns the player (server side)"
+	},
 
-        ],
-        "description": "This code runs as soon as a resource starts."
-      },
+	"(Client) PlayerData " : { 
+	
+		"prefix": "PlayerData ", 
+		
+		"body": [  
+	
+		"local PlayerData = {}",
+		"",
+		"-- Sets the playerdata when spawned",
+		"RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()",
+		"    PlayerData = QBCore.Functions.GetPlayerData()",
+		"end)",
+		"",
+		"-- Sets the playerdata to an empty table when the player has quit or did /logout",
+		"RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()",
+		"    PlayerData = {}",
+		"end)",
+		"",
+		"-- When the players job gets updated this will trigger and update the playerdata",
+		"RegisterNetEvent('QBCore:Client:OnJobUpdate', function(JobInfo)",
+		"    PlayerData.job = JobInfo",
+		"end)",
+		"",
+		"-- When the players gang gets updated this will trigger and update the playerdata",
+		"RegisterNetEvent('QBCore:Client:OnGangUpdate', function(GangInfo)",
+		"    PlayerData.gang = GangInfo",
+		"end)",
+		"",
+		"-- This will update all the PlayerData that doesn't get updated with a specific event other than this like the metadata",
+		"RegisterNetEvent('QBCore:Player:SetPlayerData', function(val)",
+		"    PlayerData = val",
+		"end)",
+		
+		],
+		"description": "This is how to register playerdata without having to call the function everytime. -- Code thanks to BerkieB#5038"
+	},
 
-      "(Client / Server) onResourceStop" : { 
-       
-        "prefix": "onResourceStop", 
-         
-        "body": [  
-    
-          "AddEventHandler('onResourceStop', function(resource)",
-          "   if resource == GetCurrentResourceName() then",
-          "      $0",
-          "   end",
-          "end)",
+	"(Client) Progressbar" : { 
+	
+		"prefix": "QBCore.Functions.Progressbar", 
+		
+		"body": [  
+	
+		"QBCore.Functions.Progressbar('name_here', 'Text that shows on bar...', 5000, false, true, { -- Name | Label | Time | useWhileDead | canCancel",
+		"    disableMovement = true,",
+		"    disableCarMovement = true,",
+		"    disableMouse = false,",
+		"    disableCombat = true,",
+		"}, {",
+		"    animDict = 'anim@gangops@facility@servers@',",
+		"    anim = 'hotwire',",
+		"    flags = 16,",
+		"}, {}, {}, function() -- Play When Done",
+		"    --Stuff goes here",
+		"end, function() -- Play When Cancel",
+		"    --Stuff goes here",
+		"end)",
+		
+		
+		],
+		"description": "Allows you to call this function instead of using an export for the progress bar."
+	},
 
-        ],
-        "description": "This code runs as soon as a resource is stopped."
-      },
-      
-      "(Client / Server) RegisterNetEvent" : { 
-       
-        "prefix": "RegisterNetEvent", 
-         
-        "body": [  
-    
-          "RegisterNetEvent('EventNameHere', function(data)",
-          "    $0",
-          "end)",
-        ],
-        "description": "placeholder"
-      },
+	"(Client) SpawnVehicle" : { 
+	
+		"prefix": "QBCore.Functions.SpawnVehicle", 
+		
+		"body": [  
+	
+		"QBCore.Functions.SpawnVehicle('VehicleModel', function(veh)",
+		"    $0",
+		"end, coords, true)"
+		
+		],
+		"description": "Spawns a specific vehicle model."
+	},
 
-      "(Server) GetPlayer" : { 
-       
-        "prefix": "QBCore.Functions.GetPlayer", 
-         
-        "body": [  
-    
-        "local Player = QBCore.Functions.GetPlayer(source)",
-        
-        ],
-        "description": "This returns the player (server side)"
-      },
+	"(Client) GetClosestVehicle" : { 
+	
+		"prefix": "QBCore.Functions.GetClosestVehicle", 
+		
+		"body": [  
+	
+		"local vehicle = QBCore.Functions.GetClosestVehicle()",
+		
+		],
+		"description": "Returns the closest vehicle to the player at the time."
+	},
 
-      "(Client) PlayerData " : { 
-       
-        "prefix": "PlayerData ", 
-         
-        "body": [  
-    
-        "local PlayerData = {}",
-        "",
-        "-- Sets the playerdata when spawned",
-        "RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()",
-        "    PlayerData = QBCore.Functions.GetPlayerData()",
-        "end)",
-        "",
-        "-- Sets the playerdata to an empty table when the player has quit or did /logout",
-        "RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()",
-        "    PlayerData = {}",
-        "end)",
-        "",
-        "-- When the players job gets updated this will trigger and update the playerdata",
-        "RegisterNetEvent('QBCore:Client:OnJobUpdate', function(JobInfo)",
-        "    PlayerData.job = JobInfo",
-        "end)",
-        "",
-        "-- When the players gang gets updated this will trigger and update the playerdata",
-        "RegisterNetEvent('QBCore:Client:OnGangUpdate', function(GangInfo)",
-        "    PlayerData.gang = GangInfo",
-        "end)",
-        "",
-        "-- This will update all the PlayerData that doesn't get updated with a specific event other than this like the metadata",
-        "RegisterNetEvent('QBCore:Player:SetPlayerData', function(val)",
-        "    PlayerData = val",
-        "end)",
-        
-        ],
-        "description": "This is how to register playerdata without having to call the function everytime. -- Code thanks to BerkieB#5038"
-      },
+	"(Client) TriggerCallback" : { 
+	
+		"prefix": "QBCore.Functions.TriggerCallback", 
+		
+		"body": [  
+	
+		"QBCore.Functions.TriggerCallback('CallbackName', function(result)",
+		"    $0",
+		"end)",
+		
+		
+		],
+		"description": "Allows you to retrieve information by calling to the server and getting something in return."
+	},
 
-      "(Client) Progressbar" : { 
-       
-        "prefix": "QBCore.Functions.Progressbar", 
-         
-        "body": [  
-    
-        "QBCore.Functions.Progressbar('name_here', 'Text that shows on bar...', 5000, false, true, { -- Name | Label | Time | useWhileDead | canCancel",
-        "    disableMovement = true,",
-        "    disableCarMovement = true,",
-        "    disableMouse = false,",
-        "    disableCombat = true,",
-        "}, {",
-        "    animDict = 'anim@gangops@facility@servers@',",
-        "    anim = 'hotwire',",
-        "    flags = 16,",
-        "}, {}, {}, function() -- Play When Done",
-        "    --Stuff goes here",
-        "end, function() -- Play When Cancel",
-        "    --Stuff goes here",
-        "end)",
-        
-        
-        ],
-        "description": "Allows you to call this function instead of using an export for the progress bar."
-      },
+	"(Client) LoadAnimDict" : { 
+	
+		"prefix": "LoadAnimDict", 
+		
+		"body": [  
+	
+	"function LoadAnimDict(dict)",
+	"    while (not HasAnimDictLoaded(dict)) do",
+	"        RequestAnimDict(dict)",
+	"        Citizen.Wait(5)",
+	"    end",
+	"end",
 
-      "(Client) SpawnVehicle" : { 
-       
-        "prefix": "QBCore.Functions.SpawnVehicle", 
-         
-        "body": [  
-    
-        "QBCore.Functions.SpawnVehicle('VehicleModel', function(veh)",
-        "    $0",
-        "end, coords, true)"
-        
-        ],
-        "description": "Spawns a specific vehicle model."
-      },
+		],
+		"description": "Loads an Animation before its called"
+	},
 
-      "(Client) GetClosestVehicle" : { 
-       
-        "prefix": "QBCore.Functions.GetClosestVehicle", 
-         
-        "body": [  
-    
-        "local vehicle = QBCore.Functions.GetClosestVehicle()",
-        
-        ],
-        "description": "Returns the closest vehicle to the player at the time."
-      },
+	"(Client) Resource Setup" : { 
+	
+		"prefix": "QBCore.Setup", 
+		
+		"body": [  
 
-      "(Client) TriggerCallback" : { 
-       
-        "prefix": "QBCore.Functions.TriggerCallback", 
-         
-        "body": [  
-    
-        "QBCore.Functions.TriggerCallback('CallbackName', function(result)",
-        "    $0",
-        "end)",
-        
-        
-        ],
-        "description": "Allows you to retrieve information by calling to the server and getting something in return."
-      },
+		"QBCore = exports['qb-core']:GetCoreObject()",
+		"PlayerLoaded = false",
+		"PlayerData = {}",
+		"",
+		"---@diagnostic disable-next-line: param-type-mismatch",
+		"AddStateBagChangeHandler('isLoggedIn', nil, function(_bagName, _key, value, _reserved, _replicated)",
+		"    if value then PlayerData = QBCore.Functions.GetPlayerData() else table.wipe(PlayerData) end",
+		"    PlayerLoaded = value",
+		"end)",
+		"",
+		"AddEventHandler('onResourceStart', function(resourceName)",
+		"    if GetCurrentResourceName() ~= resourceName or not LocalPlayer.state.isLoggedIn then return end",
+		"    PlayerData = QBCore.Functions.GetPlayerData()",
+		"    PlayerLoaded = true",
+		"end)",
+		"",
+		"AddEventHandler('QBCore:Player:SetPlayerData', function(newPlayerData) ",
+		"    local invokingResource = GetInvokingResource()",
+		"    if invokingResource and invokingResource ~= 'qb-core' then return end",
+		"    PlayerData = newPlayerData",
+		"end)",
 
-      "ExampleManifest" : { 
-       
-        "prefix": "QBCore.ExampleManifest", 
-         
-        "body": [  
-    
-            "fx_version 'cerulean'",
-            "game 'gta5'",
-            " ",
-            "description 'Example Manifest'",
-            "version '1.0.0'",
-            " ",
-            "lua54 'yes'",
-            " ",
-            "shared_script { ",
-            "    'config.lua'",
-            "}",
-            " ",
-            "client_scripts {",
-            "    'client/*.lua' -- Globbing method for multiple files",
-            "}",
-            " ",
-            "server_scripts {",
-            "    'server/*.lua' -- Globbing method for multiple files",
-            "}",
-            " ",
-            "ui_page 'html/ui.html'",
-            " ",
-            "files {",
-            "    'html/ui.html',",
-            "    'html/css/main.css',",
-            "    --'html/js/*.js', -- Globbing also works here in case you have multiple js files",
-            "    'html/js/app.js'",
-            "}",
-        ],
-        "description": "Pastes an Example Manifest for you to edit."
-      },
+		],
+		"description": "From DisplayTabs#9721 in the QBox Discord"
+	},
 
-      "(Client) LoadAnimDict" : { 
-       
-        "prefix": "LoadAnimDict", 
-         
-        "body": [  
-    
-      "function LoadAnimDict(dict)",
-      "    while (not HasAnimDictLoaded(dict)) do",
-      "        RequestAnimDict(dict)",
-      "        Citizen.Wait(5)",
-      "    end",
-      "end",
+	// FiveM Shit
 
-        ],
-        "description": "Loads an Animation before its called"
-      },
+	"ExampleManifest" : { 
+	
+		"prefix": "ExampleManifest", 
+		
+		"body": [  
+	
+			"fx_version 'cerulean'",
+			"game 'gta5'",
+			" ",
+			"description 'Example Manifest'",
+			"version '1.0.0'",
+			" ",
+			"lua54 'yes'",
+			" ",
+			"shared_scripts { ",
+			"    '@ox_lib/init.lua'",
+			"    'config.lua'",
+			"}",
+			" ",
+			"client_scripts {",
+			"    'client/*.lua'",
+			"}",
+			" ",
+			"server_scripts {",
+			"    'server/*.lua'",
+			"}",
+			" ",
+			"ui_page 'html/ui.html'",
+			" ",
+			"files {",
+			"    'html/ui.html',",
+			"    'html/css/main.css',",
+			"    'html/js/*.js',",
+			"}",
+		],
+		"description": "Pastes an Example Manifest for you to edit."
+	},
 
-      "qb-target Box Zone" : { 
-       
-        "prefix": "AddBoxZone", 
-         
-        "body": [  
+	"(Client / Server) CreateThread" : { 
+	
+		"prefix": "CreateThread", 
+		
+		"body": [  
+	
+		"CreateThread(function()",
+		"    while true do",
+		"        Wait(1)",
+		"        $0",
+		"    end",
+		"end)"
+		],
+		"description": "Create a thread"
+	},
 
-      "exports['qb-target']:AddBoxZone('BoxZoneName', vector3(123.4, -567.8, 910.11), 1, 1, {",
-      "    name='BoxZoneName',",
-      "    heading=57.45,",
-      "    debugPoly=false,",
-      "    minZ = 6.04,",
-      "    maxZ = 7.64,",
-      "    }, {",
-      "        options = {",
-      "            {",
-      "                type = 'client',",
-      "                event = 'ClientEventName',",
-      "                icon = 'fas fa-user',",
-      "                label = 'Target Label',",
-      "            },",
-      "        },",
-      "    distance = 3.5",
-      "})",
+	"(Client / Server) onResourceStart" : { 
+	
+		"prefix": "onResourceStart", 
+		
+		"body": [  
+	
+		"AddEventHandler('onResourceStart', function(resource)",
+		"   if resource == GetCurrentResourceName() then",
+		"      $0",
+		"   end",
+		"end)",
 
-        ],
-        "description": "Calls an export from qb-target"
-      },
+		],
+		"description": "This code runs as soon as a resource starts."
+	},
 
-      "(Client) Resource Setup" : { 
-       
-        "prefix": "QBCore.Setup", 
-         
-        "body": [  
+	"(Client / Server) onResourceStop" : { 
+	
+		"prefix": "onResourceStop", 
+		
+		"body": [  
+	
+		"AddEventHandler('onResourceStop', function(resource)",
+		"   if resource == GetCurrentResourceName() then",
+		"      $0",
+		"   end",
+		"end)",
 
-          "QBCore = exports['qb-core']:GetCoreObject()",
-          "PlayerLoaded = false",
-          "PlayerData = {}",
-          "",
-          "---@diagnostic disable-next-line: param-type-mismatch",
-          "AddStateBagChangeHandler('isLoggedIn', nil, function(_bagName, _key, value, _reserved, _replicated)",
-          "    if value then PlayerData = QBCore.Functions.GetPlayerData() else table.wipe(PlayerData) end",
-          "    PlayerLoaded = value",
-          "end)",
-          "",
-          "AddEventHandler('onResourceStart', function(resourceName)",
-          "    if GetCurrentResourceName() ~= resourceName or not LocalPlayer.state.isLoggedIn then return end",
-          "    PlayerData = QBCore.Functions.GetPlayerData()",
-          "    PlayerLoaded = true",
-          "end)",
-          "",
-          "AddEventHandler('QBCore:Player:SetPlayerData', function(newPlayerData) ",
-          "    local invokingResource = GetInvokingResource()",
-          "    if invokingResource and invokingResource ~= 'qb-core' then return end",
-          "    PlayerData = newPlayerData",
-          "end)",
+		],
+		"description": "This code runs as soon as a resource is stopped."
+	},
+	
+	"(Client / Server) RegisterNetEvent" : { 
+	
+		"prefix": "RegisterNetEvent", 
+		
+		"body": [  
+	
+		"RegisterNetEvent('EventNameHere', function(data)",
+		"    $0",
+		"end)",
+		],
+		"description": "placeholder"
+	},
 
-        ],
-        "description": "From DisplayTabs#9721 in the QBox Discord"
-      },
+	// OxLib Shit
 
-      "(Server) OxLib Callback" : { 
-       
-        "prefix": "QBCore.Libcallback", 
-         
-        "body": [  
+	"(Server) OxLib Callback" : { 
+	
+		"prefix": "lib.callback", 
+		
+		"body": [  
 
-          "lib.callback.register('CallbackName', function(source)",
-          "    $0",
-          "    return true",
-          "end)",
+		"lib.callback.register('CallbackName', function(source)",
+		"    $0",
+		"    return true",
+		"end)",
 
-        ],
-        "description": "OxLib Callback System"
-      },
+		],
+		"description": "OxLib Callback System"
+	},
+
+	"(Client) ox_target Models" : { 
+	
+		"prefix": "lib.target",
+		
+		"body": [  
+
+		"local options = {",
+		"  {",
+		"        name = 'ox:option1',",
+		"        event = 'ox_target:debug',",
+		"        icon = 'fa-solid fa-road',",
+		"        label = 'Option 1',",
+		"        canInteract = function(entity, distance, coords, name, bone)",
+		"            return math.random(0, 100) < 51",
+		"        end",
+		"    },",
+		"    {",
+		"        name = 'ox:option2',",
+		"        event = 'ox_target:debug',",
+		"        icon = 'fa-solid fa-road',",
+		"        label = 'Option 2',",
+		"        canInteract = function(entity, distance, coords, name, bone)",
+		"            return math.random(0, 100) < 51",
+		"        end",
+		"    }",
+		"}",
+		"",
+		"local models = { `prop_atm_01`, `prop_atm_02` }",
+		"exports.ox_target:addModel(models, options)",
+
+		],
+		"description": "https://overextended.github.io/docs/ox_target/Usage/Target"
+	},
 }

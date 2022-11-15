@@ -3,18 +3,18 @@
     "publisher": "ihyajb",
     "repository": {
         "type": "git",
-        "url": "https://github.com/ihyajb/qbcore-code-snippets.git"
+        "url": "https://github.com/ihyajb/qbox-code-snippets.git"
     },
-    "displayName": "QBCore Code Snippets",
-    "description": "VSCode Snippets for the QBCore FiveM Framework",
-    "icon": "images/logo.png",
+    "displayName": "Qbox Code Snippets",
+    "description": "Snippets for FiveM and the Qbox Framework",
+    "icon": "images/duck.png",
     "qna": "marketplace",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "engines": {
         "vscode": "^1.58.0"
     },
     "galleryBanner": {
-        "color": "#DC143C",
+        "color": "#ffff00",
         "theme": "dark"
     },
     "categories": [
