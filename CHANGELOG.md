@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.2
+
+- Added the option to `TAB` and edit data on some snippets
+- Fixed Marketplace banner destroying users eyes lol
+- Fixed Changelogs `0.0.1` and `0.0.2` still using `[]`'s
+
 ## 1.1.1
 
 - Spelling Errors
@@ -57,12 +63,12 @@
 - Updated Readme
 - Updated QBCore Documentation Link
 
-## [0.0.2]
+## 0.0.2
 
 - Added Fxmanifest snippet
 - Updated Descriptions
 - Updated GetPlayerData snippet
 
-## [0.0.1]
+## 0.0.1
 
 - Initial release

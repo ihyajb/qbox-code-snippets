@@ -7,7 +7,7 @@
 		
 		"body": [  
 	
-		"QBCore.Functions.Notify('TextHere', 'error', 7500)",
+		"QBCore.Functions.Notify('${1:Text}', '${2:error}', ${3:7500})",
 		],
 		"description": "Allows you to use the built in notification system which means no dependency on another."
 	},
@@ -52,7 +52,7 @@
 		
 		"body": [  
 	
-		"QBCore.Functions.HasItem('ItemName')"
+		"QBCore.Functions.HasItem('${1:ItemName}')"
 		],
 		"description": "Returns whether or not a player has a certain item."
 	},
@@ -63,7 +63,7 @@
 		
 		"body": [  
 	
-		"QBCore.Commands.Add('commandnamehere', 'help text here', {}, false, function(source, args)",
+		"QBCore.Commands.Add('${1:CommandName}', '${2:Help Text}', {}, false, function(source, args)",
 		"    $0",
 		"end)",
 		],
@@ -76,7 +76,7 @@
 		
 		"body": [  
 	
-		"QBCore.Functions.CreateUseableItem('itemName' , function(item)",
+		"QBCore.Functions.CreateUseableItem('${1:ItemName}' , function(item)",
 		"    $0",
 		"end)",
 		],
@@ -138,7 +138,7 @@
 		
 		"body": [  
 	
-		"QBCore.Functions.Progressbar('name_here', 'Text that shows on bar...', 5000, false, true, { -- Name | Label | Time | useWhileDead | canCancel",
+		"QBCore.Functions.Progressbar('${1:name}', '${2:Text that shows in bar}', ${3:5000}, false, true, { -- Name | Label | Time | useWhileDead | canCancel",
 		"    disableMovement = true,",
 		"    disableCarMovement = true,",
 		"    disableMouse = false,",
@@ -164,7 +164,7 @@
 		
 		"body": [  
 	
-		"QBCore.Functions.SpawnVehicle('VehicleModel', function(veh)",
+		"QBCore.Functions.SpawnVehicle('${1:model}', function(veh)",
 		"    $0",
 		"end, coords, true)"
 		
@@ -190,7 +190,7 @@
 		
 		"body": [  
 	
-		"QBCore.Functions.TriggerCallback('CallbackName', function(result)",
+		"QBCore.Functions.TriggerCallback('${1:name}', function(${2:result})",
 		"    $0",
 		"end)",
 		
@@ -296,8 +296,8 @@
 	
 		"CreateThread(function()",
 		"    while true do",
-		"        Wait(1)",
 		"        $0",
+		"        Wait(${1:1})",
 		"    end",
 		"end)"
 		],
@@ -342,7 +342,7 @@
 		
 		"body": [  
 	
-		"RegisterNetEvent('EventNameHere', function(data)",
+		"RegisterNetEvent('${1:name}', function(${2:data})",
 		"    $0",
 		"end)",
 		],
@@ -357,7 +357,7 @@
 		
 		"body": [  
 
-		"lib.callback.register('CallbackName', function(source)",
+		"lib.callback.register('${1:name}', function(source)",
 		"    $0",
 		"    return true",
 		"end)",
